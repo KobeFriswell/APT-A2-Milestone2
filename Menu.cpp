@@ -1,6 +1,7 @@
 //Menu Class
 #include "Menu.h"
 
+
 Menu::Menu(){
     welcome();
 }
@@ -37,15 +38,19 @@ void Menu::mainMenu(){
 
         if (getInput == 1){
             newGame();
-            menu = false;
+            // menu = false; unquote this after game is made
         } else if (getInput == 2){
             loadGame();
-            menu = false;
+            // menu = false; unquote this after game is made
         } else if (getInput == 3){
             credits();
         } else if (getInput == 4){
             quit();
             menu = false;
+        } else if (getInput != 1 && getInput != 2 && getInput !=3 && getInput !=4) {
+            std::cout << "invalid Command, Please Enter A Correct Value." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
         }
     }
 }
@@ -76,6 +81,7 @@ void Menu::loadGame(){
 //Function to quit game
 void Menu::quit(){
     std::cout << "Quit!" << std::endl;
+    exit(0);
 }
 
 
