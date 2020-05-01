@@ -13,7 +13,7 @@ int Menu::input(){
     std::cout << std::endl;
     return input;
 }
-
+        
 //Print welcome when menu object is created
 void Menu::welcome(){
     std::cout << "Welcome to Azul!" << std::endl;
@@ -37,7 +37,7 @@ void Menu::mainMenu(){
 
         if (getInput == 1){
             newGame();
-            menu = false;
+            menu = false; 
         } else if (getInput == 2){
             loadGame();
             menu = false;
@@ -46,6 +46,10 @@ void Menu::mainMenu(){
         } else if (getInput == 4){
             quit();
             menu = false;
+        } else if (getInput != 1 && getInput != 2 && getInput !=3 && getInput !=4) {
+            std::cout << "invalid Command, Please Enter A Correct Value." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
         }
     }
 }
@@ -65,7 +69,7 @@ void Menu::credits(){
 
 //Function to start new game
 void Menu::newGame(){
-    std::cout << "New Game!" << std::endl;
+    std::cout << "Starting a New Game" << std::endl;
 }
 
 //Function to load game
@@ -76,6 +80,7 @@ void Menu::loadGame(){
 //Function to quit game
 void Menu::quit(){
     std::cout << "Quit!" << std::endl;
+    exit(0);
 }
 
 
