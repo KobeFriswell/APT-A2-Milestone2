@@ -14,7 +14,7 @@ int Menu::input(){
     std::cout << std::endl;
     return input;
 }
-
+        
 //Print welcome when menu object is created
 void Menu::welcome(){
     std::cout << "Welcome to Azul!" << std::endl;
@@ -70,7 +70,7 @@ void Menu::credits(){
 
 //Function to start new game
 void Menu::newGame(){
-    std::cout << "New Game!" << std::endl;
+    std::cout << "Starting a New Game" << std::endl;
 }
 
 //Function to load game
