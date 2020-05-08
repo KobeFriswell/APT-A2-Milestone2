@@ -6,22 +6,32 @@ Board::Board(){
     //TODO
 }
 
- void setWallTile(int x, int y, char tile){
+void Board::setWallTile(int x, int y, char tile){
      //TODO
  }
     
-int getWall(){
+int Board::getWall(){
     //TODO
 }
 
-void setPatternTile(int x,int y, char tile){
+void Board::setPatternTile(int x,int y, char tile){
     //TODO
 }
     
-int getPatternLine(){
+int Board::getPatternLine(){
     //TODO
 }
 
-void dropTile(char tile){
+void Board::dropTile(char tile){
     //TODO
+}
+
+void Board::addFloorLine(Tiles* tile){
+    //Check array for spare spot to add tile
+    //Maybe have an integer to keep track of index
+    for (int i = 0; i<FLOOR_LINE_SIZE; i++){
+        if (floorLine[i]!=nullptr){
+            floorLine[i] = tile;
+        }
+    }
 }

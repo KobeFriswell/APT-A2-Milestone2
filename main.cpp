@@ -1,6 +1,6 @@
 //main file
 #include "Menu.h"
-#include "Player.h"
+#include "Game.h"
 
 int main(){
     Menu* menu = new Menu();

@@ -11,5 +11,6 @@ class Factories{
     bool StoreColour();
     void TileBag();
     void BoxLid();
+    void removeTiles();
 
 };
