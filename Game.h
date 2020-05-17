@@ -8,13 +8,14 @@
 class Game{
 public:
     void addPlayer(Player* player);
-    void addToLid(Tiles* tile);
-    void addToCenter(Tiles* tile);
-    void addToTileBag(Tiles* tile);
+    void addToLid(char tile);
+    void addToCenter(char tile);
+    void addToTileBag(char tile);
 
 private:
-    std::vector<Tiles*> lid;
-    std::vector<Tiles*> center;
+    std::vector<char> lid;
+    std::vector<char> center;
+    std::vector<char> factory;
     LinkedList tileBag;
     
     //Cant do 2D array with 2 different types

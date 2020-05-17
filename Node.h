@@ -6,10 +6,10 @@
 class Node {
 public:
 
-   Node(Tiles* data, Node* next);
+   Node(char data, Node* next);
    Node(Node& other);
 
-   Tiles* data;
+   char data;
    Node*  next;
 };
 

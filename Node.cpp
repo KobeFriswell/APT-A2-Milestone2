@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(Tiles* data, Node* next){
+Node::Node(char data, Node* next){
     this->data = data;
     this->next = next;
 }
