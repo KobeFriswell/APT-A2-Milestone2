@@ -13,7 +13,14 @@ int hour,minute,second,day,month,year;
 
 string dateTime;
 bool gameStatus;
-string bag;
+
+LinkedList bag = new LinkedList();
+
+//vector center
+
+//linkedlist char bag;
+
+//vector char boxlid;
 string boxLid;
 
 // linkedlist char factories;
@@ -21,13 +28,25 @@ string boxLid;
 int currentPlayer;
 int numberPlayers;
 
-bool ignore(string s){
-    return (s.length()==0 || s[0]=='#' || s[0]=='/');
-}
+string playerName;
+int playerId;
+int playerScore;
+
+char rightGrid[5][5];
+
+char leftGrid1[1];
+char leftGrid2[2];
+char leftGrid3[3];
+char leftGrid4[4];
+char leftGrid5[5];
+string penaltyPanel;
+//char penaltyPanel[5];
+
 
 
 int main(){
     ifstream inFile("example.txt");
+    //inFile.open ("test.txt");
     string line;
 
     if(!inFile.is_open()){
@@ -59,16 +78,16 @@ int main(){
         while(ignore(line)){
             getline(inFile,line);
         }
-        //TODO
-        //bag=line;
+        //TODO linkedlist
+        bag=line;
 
 // BOX LID
         getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
-        //TODO
-        //boxlid=line;
+        //TODO vector
+        boxlid=line;
 
 // FACTORIES
         getline(inFile,line);
@@ -81,7 +100,7 @@ int main(){
             // TODO
             // while(char!='$'){
             //     //TODO
-            //     //if character != $ add the linkedlist
+            //     //if character != $ add the vector
             // }  
         }
 
@@ -101,7 +120,7 @@ int main(){
 
 // ADDING PLAYERS
 
-        for(int i=0; i<=numberPlayers;i++){
+        for(int i=0; i<2;i++){
             //player name
             //player id
             //players score
@@ -109,11 +128,104 @@ int main(){
             //left grid
             //penalty panel
 
+             getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
         }
 
+        playerName = line;
+
+             getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        playerId=std::stoi(line);
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        playerScore=std::stoi(line);
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        //TODO right grid
+        for (int i=0;i<5;i++){
+            for (int j=0;i<5;j++){
+                //add chatacters to array
+                string s = line;
+                strcpy(rightGrid[i], s.c_str());
+            }
+            getline(inFile,line);
+        }
+
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        //TODO left grid arrays
+        string s = line;
+        strcpy(leftGrid1, s.c_str());
+        getline(inFile,line);
+
+        s = line;
+        strcpy(leftGrid2, s.c_str());
+        getline(inFile,line);
+        
+        s = line;
+        strcpy(leftGrid3, s.c_str());
+        getline(inFile,line);
+
+        s = line;
+        strcpy(leftGrid4, s.c_str());
+        getline(inFile,line);
+
+        s = line;
+        strcpy(leftGrid5, s.c_str());
+        getline(inFile,line);
+
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        penaltyPanel = line;
+
+        //create player
     }
+    //EXIT FILE
+    inFile("example.txt").close();
 
 }
+
+bool ignore(string s){
+    return (s.length()==0 || s[0]=='#' || s[0]=='/');
+}
+
+void skip(ifstream inFile, string line){
+    getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+}
+
+
+
+
+
+
+
+
+
+
 // int main() {
 //     string line;
 //     std::ifstream file ("example.txt");
