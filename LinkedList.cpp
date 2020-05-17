@@ -32,7 +32,7 @@ void LinkedList::clear(){
     listSize = 0;
 }
 
-Tiles* LinkedList::get(int i){
+char LinkedList::get(int i){
     Node* current = head;
 
     while (i !=0){
@@ -42,7 +42,7 @@ Tiles* LinkedList::get(int i){
     return current->data;
 }
 
-void LinkedList::addFront(Tiles* data){
+void LinkedList::addFront(char data){
     Node* newNode = new Node(data,head);
 
     //Check to see if new list with no nodes, meaning it will
@@ -55,7 +55,7 @@ void LinkedList::addFront(Tiles* data){
     listSize++;
 }
 
-void LinkedList::addBack(Tiles* data){
+void LinkedList::addBack(char data){
     Node* newNode = new Node(data, nullptr);
     last->next = newNode;
     last = new Node(data, nullptr);

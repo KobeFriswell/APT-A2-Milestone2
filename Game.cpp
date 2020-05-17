@@ -11,17 +11,17 @@ void Game::addPlayer(Player* player){
 }
 
 //Adds pointer to tile to back of lid vector
-void Game::addToLid(Tiles* tile){
+void Game::addToLid(char tile){
     lid.push_back(tile);
 }
 
 //Adds pointer to tile to back of center vector 
-void Game::addToCenter(Tiles* tile){
+void Game::addToCenter(char tile){
     center.push_back(tile);
 }
 
 //Adds pointer to tile to the back of tilebag linked list
-void Game::addToTileBag(Tiles* tile){
+void Game::addToTileBag(char tile){
     tileBag.addBack(tile);
 }
 

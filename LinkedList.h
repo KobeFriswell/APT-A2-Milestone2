@@ -10,10 +10,10 @@ public:
       
    int size();
    void clear();
-   Tiles* get(int i);
+   char get(int i);
 
-   void addFront(Tiles* data);
-   void addBack(Tiles* data);
+   void addFront(char data);
+   void addBack(char data);
 
 private:
    Node* head;
