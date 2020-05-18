@@ -1,0 +1,76 @@
+#
+#game state at 0 so the game should be over and player 1 has won
+#
+#
+#
+#Saved Date
+HH:MM:SS DD-MM-YYYY
+
+#Game Status
+0
+
+#Bag
+RYBLU$
+
+#Boxlid
+RYBLU$
+
+#Factories
+YYUU$
+YYLL$
+BBRR$
+RRBB$
+BLUR$
+
+#Current Player
+1
+
+#Number of Players
+2
+
+//player name
+//player id
+//player score
+//right grid
+//left grid
+//penaly panel
+
+#Player1
+John Doe
+1
+
+100
+
+BYR.L
+L....
+.....
+.....
+.....
+
+.
+..
+...
+....
+.....
+
+.......
+
+#Player2
+Jason Borne
+2
+
+10
+
+.....
+.....
+.....
+.....
+.....
+
+.
+..
+...
+....
+.....
+
+.......

@@ -33,6 +33,7 @@ void LinkedList::clear(){
 }
 
 char LinkedList::get(int i){
+    
     Node* current = head;
 
     while (i !=0){

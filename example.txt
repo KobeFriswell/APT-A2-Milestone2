@@ -1,0 +1,72 @@
+#players have an empty board and no tiles
+#Saved Date
+HH:MM:SS DD-MM-YYYY
+
+#Game Status
+1
+
+#Bag
+RYBLURYLUUULBYRRBLULBBBLYRLUYR$
+
+#Boxlid
+RYBLUYBLURYLUUULBYR$
+
+#Factories
+BLURY$
+BBBBB$
+RRRRR$
+LUURR$
+RYYYY$
+
+#Current Player
+1
+
+#Number of Players
+2
+
+//player name
+//player id
+//player score
+//right grid
+//left grid
+//penaly panel
+
+#Player1
+John Doe
+1
+
+0
+
+.....
+.....
+.....
+.....
+.....
+
+.
+..
+...
+....
+.....
+
+.....
+
+#Player2
+Jason Borne
+2
+
+0
+
+.....
+.....
+.....
+.....
+.....
+
+.
+..
+...
+....
+.....
+
+.....

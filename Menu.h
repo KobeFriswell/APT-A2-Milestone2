@@ -4,6 +4,7 @@
 class Menu {
 public:
     Menu();
+    
 
     int input();
     void welcome();

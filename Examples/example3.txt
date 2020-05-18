@@ -1,0 +1,67 @@
+#players have so tiles on their boards 
+#player 1 has one of each
+#player 2 has 5 B alng the bottom
+#Saved Date
+HH:MM:SS DD-MM-YYYY
+
+#Game Status
+1
+
+#Bag
+RYBLU$
+
+#Boxlid
+RYBLU$
+
+#Factories
+RY$
+$
+$
+$
+$
+
+#Current Player
+1
+
+#Number of Players
+2
+
+#Player1
+John Doe
+1
+
+20
+
+.Y...
+...R.
+..B..
+.U...
+...L.
+
+R
+UU
+..Y
+...L
+..BBB
+
+.......
+
+#Player2
+Jason Borne
+2
+
+10
+
+...UL
+.B.RU
+...YR
+.U...
+.....
+
+.
+..
+...
+....
+BBBBB
+
+.......
