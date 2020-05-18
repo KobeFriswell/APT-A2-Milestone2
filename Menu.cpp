@@ -1,6 +1,6 @@
 //Menu Class
 #include "Menu.h"
-
+#include "Player.h"
 
 Menu::Menu(){
     welcome();
@@ -39,6 +39,22 @@ void Menu::mainMenu(){
         if (getInput == 1){
             newGame();
             // menu = false; unquote this after game is made
+            std::cout <<"Start new game " <<std::endl;
+
+            std::cout << "enter name for player 1" << std::endl;
+            std::string user1;
+            std::cin>>user1;
+            Player* player1 = new Player(user1);
+            
+
+            std::cout << "enter name for player 2" << std::endl;
+            std::string user2;
+            std::cin>>user2;
+            Player* player2 = new Player(user2);
+
+            std::cout <<"Lets play" <<std::endl;
+
+
         } else if (getInput == 2){
             loadGame();
             // menu = false; unquote this after game is made

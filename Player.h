@@ -1,24 +1,29 @@
+#ifndef Player_h
+#define Player_h
 #include <string>
+#include <iostream>
 
 using std::string;
 
 class Player {
 public:
 
-    Player();
+    Player(std::string username);
+    std::string getUsername();
+    ~Player();
 
     Player getPlayer();
     
     int getPlayerScore();  
-    void setPlayerScore();
-
+    void setPlayerScore(int point);
     
+    void DisplayStatus();
 
 private: 
 
-    string username;
-    int playerid;
+    std::string username;
     int score;
-
+    int point;
     };
     
+#endif 

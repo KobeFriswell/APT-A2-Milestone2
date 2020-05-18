@@ -5,7 +5,7 @@ class Tiles {
     public:
 
     Tiles();
-    void DisplayColour();
+    void DisplayColour(int c);
 
 
 private:
