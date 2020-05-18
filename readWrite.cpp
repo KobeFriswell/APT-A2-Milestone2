@@ -25,14 +25,16 @@ bool gameStatus;
 //LinkedList bag = LinkedList();
 LinkedList bag;
 
+ vector<int> center;
 
-//vector center
+ vector<char> boxlid;
+//string boxLid;
 
-//vector char boxlid;
-string boxLid;
-
-//LinkedList factories = LinkedList();
-LinkedList factories;
+LinkedList factory1;
+LinkedList factory2;
+LinkedList factory3;
+LinkedList factory4;
+LinkedList factory5;
 
 int currentPlayer;
 int numberPlayers;
@@ -48,18 +50,17 @@ char leftGrid2[2];
 char leftGrid3[3];
 char leftGrid4[4];
 char leftGrid5[5];
+
 string penaltyPanel;
-//char penaltyPanel[5];
+char penaltyPanel[5];
 
 bool ignore(string s){
-    //cout<<"call ignore"<<endl;
     return (s.length()==0 || s[0]=='#' || s[0]=='/');
 }
 
 void skip(ifstream inFile, string line){
     getline(inFile,line);
     while(ignore(line)){
-        cout<<"-empty line" + line <<endl;
         getline(inFile,line);
         }
         
