@@ -1,3 +1,6 @@
+#ifndef FACTORIES_H
+#define FACTORIES_H
+
 #include <iostream>
 #include <string>
 
@@ -14,3 +17,4 @@ class Factories{
     void removeTiles();
 
 };
+#endif

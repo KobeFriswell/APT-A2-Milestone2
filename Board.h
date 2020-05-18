@@ -1,3 +1,6 @@
+#ifndef BOARD_H
+#define BOARD_H
+
 #include "Tiles.h"
 
 #define FLOOR_LINE_SIZE 7
@@ -29,3 +32,4 @@ private:
     //int scoreTrack;
 };
 
+#endif

@@ -12,6 +12,7 @@ void Board::setWallTile(int x, int y, char tile){
     
 int Board::getWall(){
     //TODO
+    return 0;
 }
 
 void Board::setPatternTile(int x,int y, char tile){
@@ -20,6 +21,7 @@ void Board::setPatternTile(int x,int y, char tile){
     
 int Board::getPatternLine(){
     //TODO
+    return 0;
 }
 
 void Board::dropTile(char tile){

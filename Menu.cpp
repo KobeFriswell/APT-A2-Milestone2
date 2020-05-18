@@ -99,4 +99,9 @@ void Menu::quit(){
     exit(0);
 }
 
+void Menu::startRound(){
+    std::cout << "=== Start Round ===" << std::endl;
+}
+
+
 

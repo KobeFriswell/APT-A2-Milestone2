@@ -6,21 +6,21 @@ Factories::Factories(){
 
 int Factories::takeTile(){
     //TODO
+    return 0;
 }
 
 int Factories::NoOfFactories(){
-        //TODO
-
+    //TODO
+    return 0;
 }
 
 bool Factories::StoreColour(){
     //TODO
-
+    return false;
 }
 
 void Factories::TileBag(){
     //TODO
-
 }
 
 void Factories::removeTiles(){

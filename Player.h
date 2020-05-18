@@ -12,7 +12,7 @@ public:
     std::string getUsername();
     ~Player();
 
-    Player getPlayer();
+    Player* getPlayer();
     
     int getPlayerScore();  
     void setPlayerScore(int point);

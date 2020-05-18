@@ -2,7 +2,6 @@
 
 //Player class
 
-
 Player::Player(std::string username){
     this ->username = username;
     this ->score = 0;
