@@ -47,16 +47,15 @@ string playerName;
 int playerId;
 int playerScore;
 
-char rightGrid[5][5];
+char rightGrid[5][6];
 
-char leftGrid1[1];
-char leftGrid2[2];
-char leftGrid3[3];
-char leftGrid4[4];
-char leftGrid5[5];
+char leftGrid1[2];
+char leftGrid2[3];
+char leftGrid3[4];
+char leftGrid4[5];
+char leftGrid5[6];
 
-string penaltyPanel;
-//char penaltyPanel[5];
+char penaltyPanel[5];
 
 //Player players[2];
 
@@ -161,16 +160,17 @@ int main(){
         while(ignore(line)){
             getline(inFile,line);
         } 
-        cout<<"current player " + line<<endl;
-        //currentPlayer=std::stoi(line);
+        currentPlayer=std::stoi(line);
+        cout<<"current player " << currentPlayer<<endl;
+        
 
 // NUMBER OF PLAYER
         getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         } 
-        //numberPlayers=std::stoi(line);
-        cout<<"number palyers " + line<<endl;
+        numberPlayers=std::stoi(line);
+        cout<<"number palyers " << numberPlayers <<endl;
 
         cout<<"----------------------------------------------"<<endl;
 // ADDING PLAYERS
@@ -191,23 +191,24 @@ int main(){
         }
 
         playerName = line;
-        cout<<"Player name " + line<<endl;
+        cout<<"Player name " << playerName <<endl;
 
              getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        //playerId=std::stoi(line);
-        cout<<"playerid " + line<<endl;
+
+        playerId=std::stoi(line);
+        cout<<"playerid " << playerId<<endl;
 
          getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        //playerScore=std::stoi(line);
-        cout<<"player Score " + line<<endl;
+        playerScore = stoi(line);
+        cout<<"player Score " << playerScore <<endl;
 
          getline(inFile,line);
         while(ignore(line)){
@@ -215,13 +216,15 @@ int main(){
         }
 
         //TODO right grid
+        cout<<"rightgrid:"<<endl;
         for (int i=0;i<5;i++){
-//             for (int j=0;i<5;j++){
-//                 //add chatacters to array
-//                 string s = line;
-//                 strcpy(rightGrid[i], s.c_str());
-//             }
-            cout<<"rightgird " + line <<endl;
+            for (int j=0;j<5;j++){
+            //add chatacters to array
+            c = line.at(j);
+            rightGrid[i][j] = c;
+            cout<<rightGrid[i][j];
+            }
+            cout<<endl;
             getline(inFile,line);
             
         }
@@ -231,34 +234,52 @@ int main(){
         }
 
         //TODO left grid arrays
-        string s = line;
-        //strcpy(leftGrid1, s.c_str());
-        cout<<"leftgird " + line <<endl;
+        cout<<"leftgrid:"<<endl;
+        for(int i=0; i<1;i++){
+            c = line.at(i);
+            leftGrid1[i] = c;
+            cout<<leftGrid1[i];
+        }
+        cout<<endl;
         getline(inFile,line);
         
 
-        s = line;
-        //strcpy(leftGrid2, s.c_str());
-        cout<<"leftgird " + line <<endl;
+        for(int i=0; i<2;i++){
+            c = line.at(i);
+            leftGrid2[i] = c;
+            cout<<leftGrid2[i];
+        }
+        cout<<endl;
+
         getline(inFile,line);
         
         
-        
-        s = line;
-        //strcpy(leftGrid3, s.c_str());
-        cout<<"leftgird " + line <<endl;
+        for(int i=0; i<3;i++){
+            c = line.at(i);
+            leftGrid3[i] = c;
+            cout<<leftGrid2[i];
+        }
+        cout<<endl;
+
         getline(inFile,line);
         
 
-        s = line;
-        //strcpy(leftGrid4, s.c_str());
-        cout<<"leftgird " + line <<endl;
+        for(int i=0; i<4;i++){
+            c = line.at(i);
+            leftGrid4[i] = c;
+            cout<<leftGrid4[i];
+        }
+        cout<<endl;
+
         getline(inFile,line);
         
 
-        s = line;
-        //strcpy(leftGrid5, s.c_str());
-        cout<<"leftgird " + line <<endl;
+        for(int i=0; i<5;i++){
+            c = line.at(i);
+            leftGrid5[i] = c;
+            cout<<leftGrid5[i];
+        }
+        cout<<endl;
         getline(inFile,line);
         
 
@@ -266,8 +287,15 @@ int main(){
             getline(inFile,line);
         }
 
-        penaltyPanel = line;
-        cout<<"penalty panel" + line <<endl;
+
+
+        cout<<"penaltyPanel:";
+        for(int i=0; i<5;i++){
+            c = line.at(i);
+            penaltyPanel[i] = c;
+            cout<< penaltyPanel[i];
+        }
+        cout<<endl;
 
         //CREATE A PLAYER
 

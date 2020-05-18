@@ -54,11 +54,7 @@ John Doe
 Jason Borne
 2
 
-
-
-0
-
-
+10
 
 .....
 .....
