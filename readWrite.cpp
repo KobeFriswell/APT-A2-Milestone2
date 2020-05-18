@@ -4,10 +4,16 @@
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
+
 #include "LinkedList.h"
 #include "LinkedList.cpp"
 #include "Node.h"
 #include "Node.cpp"
+#include "Player.h"
+//#include "Player.cpp"
+
+
 
 
 using std::string;
@@ -16,25 +22,23 @@ using std::endl;
 using std::ifstream;
 using std::getline;
 using std::stoi;
+using std::vector;
 
 int hour,minute,second,day,month,year;
 
 string dateTime;
 bool gameStatus;
 
-//LinkedList bag = LinkedList();
 LinkedList bag;
+char c;
 
- vector<int> center;
+//vector<int> center;
+vector<int> center;
 
- vector<char> boxlid;
-//string boxLid;
+//vector<char> boxlid;
+LinkedList boxlid;
 
-LinkedList factory1;
-LinkedList factory2;
-LinkedList factory3;
-LinkedList factory4;
-LinkedList factory5;
+LinkedList factory[5];
 
 int currentPlayer;
 int numberPlayers;
@@ -52,7 +56,12 @@ char leftGrid4[4];
 char leftGrid5[5];
 
 string penaltyPanel;
-char penaltyPanel[5];
+//char penaltyPanel[5];
+
+//Player players[2];
+
+std::ifstream inFile("example.txt");
+string line;
 
 bool ignore(string s){
     return (s.length()==0 || s[0]=='#' || s[0]=='/');
@@ -80,7 +89,6 @@ int main(){
         cout<<"-File Opened"<<endl;
         
     } else {
-//  getline(file to look at, where to store that line)
 // SAVE DATE
         getline(inFile,line);
         while(ignore(line)){
@@ -108,9 +116,12 @@ int main(){
         while(ignore(line)){
             getline(inFile,line);
         }
+        for (unsigned i=0; i<line.length()-1; ++i){
+            c = line.at(i);
+            bag.addFront(c);
+        }
         cout<<"Bag " + line<<endl;
-        //TODO linkedlist
-        //bag=line;
+
 
 // BOX LID
         getline(inFile,line);
@@ -118,9 +129,14 @@ int main(){
         while(ignore(line)){
             getline(inFile,line);
         }
-        cout<<"Box lid " + line<<endl;
         //TODO vector
-        //boxlid=line;
+        for (unsigned i=0; i<line.length()-1; ++i){
+            c = line.at(i);
+            boxlid.addFront(c);
+        }
+
+        cout<<"Box lid " + line<<endl;
+
 
 // FACTORIES
         getline(inFile,line);
@@ -129,15 +145,15 @@ int main(){
         }
         //for the 5 factories
         for(int i=0;i<5;i++){
-
+            //print the content of the factory as a string
             cout<< i <<"factory " + line<<endl;
-            getline(inFile,line);
 
-            // TODO
-            // while(char!='$'){
-            //     //TODO
-            //     //if character != $ add the vector
-            // }  
+            for (unsigned i=0; i<line.length()-1; ++i){
+            c = line.at(i);
+            factory[i].addFront(c);
+            } 
+
+            getline(inFile,line);
         }
 
 // CURRENT PLAYER
