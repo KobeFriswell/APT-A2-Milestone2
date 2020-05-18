@@ -1,6 +1,6 @@
 //Menu Class
 #include "Menu.h"
-#include "Player.h"
+#include "Game.h"
 
 Menu::Menu(){
     welcome();
