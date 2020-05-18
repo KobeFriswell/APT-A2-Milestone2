@@ -1,22 +1,26 @@
-#players have an empty board and no tiles
+#
+#game state at 0 so the game should be over and player 1 has won
+#
+#
+#
 #Saved Date
 HH:MM:SS DD-MM-YYYY
 
 #Game Status
-1
+0
 
 #Bag
-RYBLURYLUUULBYRRBLULBBBLYRLUYR$
+RYBLU$
 
 #Boxlid
-RYBLUYBLURYLUUULBYR$
+RYBLU$
 
 #Factories
-BLURY$
-BBBBB$
-RRRRR$
-LUURR$
-RYYYY$
+YYUU$
+YYLL$
+BBRR$
+RRBB$
+BLUR$
 
 #Current Player
 1
@@ -35,10 +39,10 @@ RYYYY$
 John Doe
 1
 
-0
+100
 
-.....
-.....
+BYR.L
+L....
 .....
 .....
 .....
@@ -49,13 +53,13 @@ John Doe
 ....
 .....
 
-.....
+.......
 
 #Player2
 Jason Borne
 2
 
-0
+10
 
 .....
 .....
@@ -69,4 +73,4 @@ Jason Borne
 ....
 .....
 
-.....
+.......

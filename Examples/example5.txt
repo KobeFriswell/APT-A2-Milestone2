@@ -1,4 +1,4 @@
-#players have an empty board and no tiles
+#player1 has maximum penalty
 #Saved Date
 HH:MM:SS DD-MM-YYYY
 
@@ -12,11 +12,11 @@ RYBLURYLUUULBYRRBLULBBBLYRLUYR$
 RYBLUYBLURYLUUULBYR$
 
 #Factories
-BLURY$
-BBBBB$
-RRRRR$
-LUURR$
-RYYYY$
+BLUR$
+BBBB$
+RRRR$
+LUUR$
+RYYY$
 
 #Current Player
 1
@@ -35,13 +35,13 @@ RYYYY$
 John Doe
 1
 
-0
+50
 
+...U.
+.B.R.
+...Y.
 .....
-.....
-.....
-.....
-.....
+..U..
 
 .
 ..
@@ -49,15 +49,15 @@ John Doe
 ....
 .....
 
-.....
+BRYLU..
 
 #Player2
 Jason Borne
 2
 
-0
+40
 
-.....
+.......
 .....
 .....
 .....

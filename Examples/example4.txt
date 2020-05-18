@@ -1,4 +1,5 @@
-#players have an empty board and no tiles
+#player 1 is a single move away from game end with high score
+#by taking the factory with 5 blue tiles
 #Saved Date
 HH:MM:SS DD-MM-YYYY
 
@@ -6,17 +7,17 @@ HH:MM:SS DD-MM-YYYY
 1
 
 #Bag
-RYBLURYLUUULBYRRBLULBBBLYRLUYR$
+RYBLUBLRULLLRYB$
 
 #Boxlid
-RYBLUYBLURYLUUULBYR$
+RYBLURYBLUUUBLR$
 
 #Factories
-BLURY$
-BBBBB$
-RRRRR$
-LUURR$
-RYYYY$
+RYLU$
+BRLY$
+BBBR$
+RBYY$
+BBBB$
 
 #Current Player
 1
@@ -35,13 +36,13 @@ RYYYY$
 John Doe
 1
 
-0
+2
 
-.....
-.....
-.....
-.....
-.....
+.YRUL
+LBYR.
+ULBY.
+RULB.
+YRUL.
 
 .
 ..
@@ -55,7 +56,7 @@ John Doe
 Jason Borne
 2
 
-0
+10
 
 .....
 .....
