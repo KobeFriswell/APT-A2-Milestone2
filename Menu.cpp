@@ -38,23 +38,7 @@ void Menu::mainMenu(){
 
         if (getInput == 1){
             newGame();
-            // menu = false; unquote this after game is made
-            std::cout <<"Start new game " <<std::endl;
-
-            std::cout << "enter name for player 1" << std::endl;
-            std::string user1;
-            std::cin>>user1;
-            Player* player1 = new Player(user1);
-            
-
-            std::cout << "enter name for player 2" << std::endl;
-            std::string user2;
-            std::cin>>user2;
-            Player* player2 = new Player(user2);
-
-            std::cout <<"Lets play" <<std::endl;
-
-
+            menu = false;
         } else if (getInput == 2){
             loadGame();
             // menu = false; unquote this after game is made
@@ -86,7 +70,22 @@ void Menu::credits(){
 
 //Function to start new game
 void Menu::newGame(){
-    std::cout << "Starting a New Game" << std::endl;
+    std::cout << "Starting New Game" << std::endl;
+
+    std::cout << "Enter Player 1 Name: \n>";
+    std::string player1;
+    std::cin >> player1;
+    std::cout << std::endl;
+
+    std::cout << "Enter Player 2 Name: \n>";
+    std::string player2;
+    std::cin >> player2;
+    std::cout << std::endl;
+
+    game = new Game(player1, player2);
+
+    std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
+    std::cout << "Let's Play!" << std::endl;
 }
 
 //Function to load game
