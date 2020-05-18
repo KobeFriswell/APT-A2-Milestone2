@@ -35,4 +35,4 @@ void Player::DisplayStatus() {
     std::cout << "Name: " << this-> username << std::endl;
     std::cout << "Point: " << this-> point << std::endl;
 
-}
+}   
