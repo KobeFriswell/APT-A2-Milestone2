@@ -38,8 +38,9 @@ void Menu::mainMenu(){
 
         if (getInput == 1){
             newGame();
-            // menu = false; unquote this after game is made
-            std::cout <<"Start new game " <<std::endl;
+            menu = false;
+
+            std::cout <<"---------------- " <<std::endl;
 
             std::cout << "enter name for player 1" << std::endl;
             std::string user1;
@@ -52,8 +53,8 @@ void Menu::mainMenu(){
             std::cin>>user2;
             Player* player2 = new Player(user2);
 
-            std::cout <<"Lets play" <<std::endl;
-
+            std::cout <<"Lets play!" <<std::endl;
+            std::cout <<"---------------- " <<std::endl;
 
         } else if (getInput == 2){
             loadGame();

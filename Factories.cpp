@@ -1,33 +1,29 @@
 #include "Factories.h"
 
-Factories::Factories(){
+Factories::Factories(int noOfPlayers, int seed){
     //TODO
 }
 
-int Factories::takeTile(){
-    //TODO
-}
+// int Factories::takeTile(Colour c, int factories){
+//     //TODO
+// }
 
-int Factories::NoOfFactories(){
+int Factories::NoOfFactories(int NoOfFactories){
         //TODO
-
 }
 
-bool Factories::StoreColour(){
+// bool Factories::StoreColour(Colour c, int factories){
+//     //TODO
+// }
+
+void Factories::TileBag(LinkedList* Tilebag){
     //TODO
-
-}
-
-void Factories::TileBag(){
-    //TODO
-
 }
 
 void Factories::removeTiles(){
     //TODO
 }
 
-void Factories::BoxLid(){
+void Factories::BoxLid(LinkedList* BoxLid){
     //TODO
-
 }

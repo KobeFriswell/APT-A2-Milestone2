@@ -25,8 +25,8 @@ int Player::getPlayerScore(){
 } 
     
 //set set point as score 
-void Player::setPlayerScore(int point){
-    if(point >=0) this-> point = score;
+void Player::setPlayerScore(int score){
+    if(score >=0) this-> point = score;
     else this-> point = 0;
 }
 

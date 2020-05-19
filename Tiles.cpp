@@ -2,9 +2,24 @@
 #include "Tiles.h"
 
 Tiles::Tiles(){
-    Tiles();
+    this-> colour = ' ';
 }
 
-Tiles::DisplayColour(){
-    //TODO
+Tiles::Tiles(Colour c){
+    this-> colour = c;
+}
+
+void Tiles::setColour(Colour c){
+    this->colour = c;
+}
+
+Tiles::Colour Tiles::getColour() {
+    return this->colour;
+}
+
+
+bool Tiles::SameColour(Tiles* tiles) {
+    if(tiles->getColour() == this->colour)
+    {return true;}
+    return false;
 }
