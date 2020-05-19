@@ -1,82 +1,17 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
-
-#include "LinkedList.h"
-#include "LinkedList.cpp"
-#include "Node.h"
-#include "Node.cpp"
-#include "Player.h"
-//#include "Player.cpp"
-
-
-
-
-using std::string;
-using std::cout;
-using std::endl;
-using std::ifstream;
-using std::getline;
-using std::stoi;
-using std::vector;
-
-int hour,minute,second,day,month,year;
-
-string dateTime;
-bool gameStatus;
-
-LinkedList bag;
-char c;
-
-//vector<int> center;
-vector<int> center;
-
-//vector<char> boxlid;
-LinkedList boxlid;
-
-LinkedList factory[5];
-
-int currentPlayer;
-int numberPlayers;
-
-string playerName;
-int playerId;
-int playerScore;
-
-char rightGrid[5][6];
-
-char leftGrid1[2];
-char leftGrid2[3];
-char leftGrid3[4];
-char leftGrid4[5];
-char leftGrid5[6];
-
-char penaltyPanel[5];
-
-//Player players[2];
+#include "readWrite.h"
 
 std::ifstream inFile("example.txt");
 string line;
+
+// readWrite::readWrite(){
+//     //Empty
+// }
 
 bool ignore(string s){
     return (s.length()==0 || s[0]=='#' || s[0]=='/');
 }
 
-void skip(ifstream inFile, string line){
-    getline(inFile,line);
-    while(ignore(line)){
-        getline(inFile,line);
-        }
-        
-}
-
-
-
-int main(){
+int dataFromFile(){
     
     std::ifstream inFile("example.txt");
     string line;
@@ -128,13 +63,26 @@ int main(){
         while(ignore(line)){
             getline(inFile,line);
         }
-        //TODO vector
+        //TODO vector?
         for (unsigned i=0; i<line.length()-1; ++i){
             c = line.at(i);
             boxlid.addFront(c);
         }
 
         cout<<"Box lid " + line<<endl;
+
+        // CENTER
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+        cout<<"center: ";
+        for (unsigned i=0; i<line.length()-1; i++){
+            c = line.at(i);
+            cout<<c;
+            center.push_back(c);
+        }
+        cout<<endl;
 
 
 // FACTORIES
@@ -143,14 +91,15 @@ int main(){
             getline(inFile,line);
         }
         //for the 5 factories
-        for(int i=0;i<5;i++){
+        for(int i=0;i<gridSize;i++){
             //print the content of the factory as a string
             cout<< i <<"factory " + line<<endl;
 
             for (unsigned i=0; i<line.length()-1; ++i){
             c = line.at(i);
-            factory[i].addFront(c);
-            } 
+
+            factory[i].push_back(c);
+            }
 
             getline(inFile,line);
         }
@@ -175,7 +124,7 @@ int main(){
         cout<<"----------------------------------------------"<<endl;
 // ADDING PLAYERS
 
-        for(int i=0; i<=1 ;i++){
+        for(int i=0; i<numberPlayers ;i++){
             cout<<"PLAYER: "<<i+1<<endl;
             //player name
             //player id
@@ -215,14 +164,14 @@ int main(){
             getline(inFile,line);
         }
 
-        //TODO right grid
+        //Player patternlines on the right
         cout<<"rightgrid:"<<endl;
-        for (int i=0;i<5;i++){
-            for (int j=0;j<5;j++){
-            //add chatacters to array
-            c = line.at(j);
-            rightGrid[i][j] = c;
-            cout<<rightGrid[i][j];
+        for (int i=0;i<gridSize;i++){
+            for (int j=0;j<gridSize;j++){
+                //add chatacters to array
+                c = line.at(j);
+                rightGrid[i][j] = c;
+                cout<<rightGrid[i][j];
             }
             cout<<endl;
             getline(inFile,line);
@@ -233,71 +182,31 @@ int main(){
             getline(inFile,line);
         }
 
-        //TODO left grid arrays
+        //Players tiles in a tiangle on the left side
         cout<<"leftgrid:"<<endl;
-        for(int i=0; i<1;i++){
-            c = line.at(i);
-            leftGrid1[i] = c;
-            cout<<leftGrid1[i];
+        for (int i =0; i<gridSize; i++){
+            for (int j=0; j<=i; j++){
+                c = line.at(j);
+                leftGrid[i][j] = c;
+                cout<<leftGrid[i][j];
+            }
+            getline(inFile,line);
+            cout<<endl;
         }
-        cout<<endl;
-        getline(inFile,line);
-        
-
-        for(int i=0; i<2;i++){
-            c = line.at(i);
-            leftGrid2[i] = c;
-            cout<<leftGrid2[i];
-        }
-        cout<<endl;
-
-        getline(inFile,line);
-        
-        
-        for(int i=0; i<3;i++){
-            c = line.at(i);
-            leftGrid3[i] = c;
-            cout<<leftGrid2[i];
-        }
-        cout<<endl;
-
-        getline(inFile,line);
-        
-
-        for(int i=0; i<4;i++){
-            c = line.at(i);
-            leftGrid4[i] = c;
-            cout<<leftGrid4[i];
-        }
-        cout<<endl;
-
-        getline(inFile,line);
-        
-
-        for(int i=0; i<5;i++){
-            c = line.at(i);
-            leftGrid5[i] = c;
-            cout<<leftGrid5[i];
-        }
-        cout<<endl;
-        getline(inFile,line);
-        
 
         while(ignore(line)){
             getline(inFile,line);
         }
 
-
-
         cout<<"penaltyPanel:";
-        for(int i=0; i<5;i++){
+        for(int i=0; i<penaltylength;i++){
             c = line.at(i);
             penaltyPanel[i] = c;
             cout<< penaltyPanel[i];
         }
         cout<<endl;
 
-        //CREATE A PLAYER
+        //CREATE A PLAYER HERE
 
         std::cout << "----------------------------------------------" << std::endl;
 
@@ -306,4 +215,8 @@ int main(){
 
     exit (EXIT_SUCCESS);
     
+}
+
+int main(){
+    dataFromFile();
 }
