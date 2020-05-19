@@ -18,7 +18,7 @@ public:
     int getPatternLine();
 
     void dropTile(char tile);
-    void addFloorLine(Tiles* tile);
+    void addFloorLine(char tile);
 
 private: 
 
@@ -27,7 +27,7 @@ private:
 
     //2D arrays cant store 2 different data types as far as I can see
     const int weightings[7] = {-1,-1,-2,-2,-2,-3,-3};
-    Tiles* floorLine[7];
+    char floorLine[FLOOR_LINE_SIZE];
     
     //int scoreTrack;
 };

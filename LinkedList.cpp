@@ -9,10 +9,9 @@ LinkedList::LinkedList(){
 LinkedList::~LinkedList(){
     clear();
 }
-      
+
+//Return the int listSize as it keeps track of the size when adding and clearing
 int LinkedList::size(){
-    //Return the int listSize as it keeps track of the size 
-    //when adding and clearing
     return listSize;
 }
 
@@ -32,14 +31,17 @@ void LinkedList::clear(){
     listSize = 0;
 }
 
-char LinkedList::get(int i){
+Node* LinkedList::getNode(int i){
     Node* current = head;
+    while (i != 0){
+            i--;
+            current = current->next;
+        }
+    return current;
+}
 
-    while (i !=0){
-        i--;
-        current = current->next;
-    }
-    return current->data;
+char LinkedList::getData(int i){
+    return getNode(i)->data;
 }
 
 void LinkedList::addFront(char data){
@@ -57,7 +59,32 @@ void LinkedList::addFront(char data){
 
 void LinkedList::addBack(char data){
     Node* newNode = new Node(data, nullptr);
-    last->next = newNode;
-    last = new Node(data, nullptr);
+
+    if (last == nullptr && head == nullptr){
+        last = newNode;
+        head = newNode;
+    } else{
+        last->next = newNode;
+        last = newNode;
+    }
     listSize++;
+}
+
+char LinkedList::grabTile(int i){
+    int previousIndex = i-1;
+    Node* toRemove = getNode(i);
+    Node* next = toRemove->next;
+
+    //If previous node is the head, make new head
+    if (previousIndex >= 0){
+        Node* previous = getNode(i-1);
+        previous->next = next;
+    } else {
+        head = next;
+    }
+    
+    char data = toRemove->data;
+    delete(toRemove);
+    listSize--;
+    return data;
 }

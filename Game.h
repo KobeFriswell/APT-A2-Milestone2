@@ -5,9 +5,12 @@
 #include "Player.h"
 #include "Board.h"
 #include "Factories.h"
+#include "Bag.h"
 
 #include <string>
 #include <vector>
+
+#define NUM_FACTORIES 5
 
 class Game{
 public:
@@ -18,17 +21,22 @@ public:
     void addToCenter(char tile);
     void addToTileBag(char tile);
 
+    int getNumPlayers();
+    Player* getPlayer(int index);
+
+    Factories* getFactory(int index);
+
 private:
     std::vector<char> lid;
     std::vector<char> center;
     std::vector<Factories*> factories;
-    LinkedList tileBag;
+    Bag* tileBag;
     
     //Cant do 2D array with 2 different types
     std::vector<Player*> players;
     std::vector<Board*> boards;
 
-    const char tiles[5] = {'R','Y','B','L','U'};
+    int numPlayers;
 };
 
 #endif

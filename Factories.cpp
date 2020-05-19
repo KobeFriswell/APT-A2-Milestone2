@@ -1,33 +1,49 @@
 #include "Factories.h"
 
 Factories::Factories(){
-    //TODO
+    numTiles = 0;
 }
 
-int Factories::takeTile(){
-    //TODO
-    return 0;
+//Returns the number of tiles on the factory
+//And removes them from the array
+int Factories::takeTile(char tile){
+    int tileCount = 0;
+    for (int i = 0; i<FACTORY_SIZE; i++){
+        if (tiles[i] == tile){
+            tileCount += 1;
+            tiles[i] = '-';
+        }   
+    }
+
+    return tileCount;
 }
 
-int Factories::NoOfFactories(){
-    //TODO
-    return 0;
-}
-
-bool Factories::StoreColour(){
-    //TODO
+//Checks for blank spot then adds the tile
+bool Factories::storeTile(char tile){
+    for (int i = 0; i<FACTORY_SIZE; i++){
+        if (tiles[i] != '-'){
+            tiles[i] = tile;
+            return true; 
+        }
+    }
     return false;
 }
 
-void Factories::TileBag(){
-    //TODO
+//Removes tile matching that char
+void Factories::removeTiles(char tile){
+    for (int i = 0; i<FACTORY_SIZE; i++){
+        if (tiles[i] == tile){
+            tiles[i] = '-';
+        }
+    }
 }
 
-void Factories::removeTiles(){
-    //TODO
-}
+//Returns array in string format
+std::string Factories::toString(){
+    std::string toString;
+    for (int i = 0; i<FACTORY_SIZE; i++){
+        toString += tiles[i] + " ";
+    }
 
-void Factories::BoxLid(){
-    //TODO
-
+    return toString;
 }

@@ -8,7 +8,7 @@ public:
    Node(Node& other);
 
    char data;
-   Node*  next;
+   Node* next;
 };
 
 #endif // NODE_H

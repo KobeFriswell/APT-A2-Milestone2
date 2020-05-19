@@ -15,18 +15,15 @@ Game::Game(std::string player1, std::string player2){
     players.push_back(p2);
     boards.push_back(player2Board);
 
-    //Add 100 tiles to bag (20 of each)
-    for (int i=0; i<5; i++){
-        for (int x=0;x<20;x++){
-            addToTileBag(tiles[i]);
-        }
-    }
-
     //Create 5 Factories
-    for (int i=0; i<5; i++){
+    for (int i = 0; i<NUM_FACTORIES; i++){
         Factories* factory = new Factories();
         factories.push_back(factory);
     }
+
+    // Bag
+    tileBag = new Bag();
+    
 }
 
 //Add player to back of vector
@@ -47,6 +44,18 @@ void Game::addToCenter(char tile){
 
 //Adds pointer to tile to the back of tilebag linked list
 void Game::addToTileBag(char tile){
-    tileBag.addBack(tile);
+    //tileBag->addBack(tile);
 }
 
+//Returns number of players
+int Game::getNumPlayers(){
+    return numPlayers;
+}
+
+Player* Game::getPlayer(int index){
+    return players.at(index);
+}
+
+Factories* Game::getFactory(int index){
+    return factories.at(index);
+}

@@ -2,6 +2,8 @@
 #define LINKED_LIST_H
 
 #include "Node.h"
+
+#include <iostream>
   	
 class LinkedList {
 public:
@@ -10,10 +12,12 @@ public:
       
    int size();
    void clear();
-   char get(int i);
+   Node* getNode(int i);
+   char getData(int i);
 
    void addFront(char data);
    void addBack(char data);
+   char grabTile(int i);
 
 private:
    Node* head;

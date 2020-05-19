@@ -86,6 +86,8 @@ void Menu::newGame(){
 
     std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
     std::cout << "Let's Play!" << std::endl;
+
+    startRound();
 }
 
 //Function to load game
@@ -101,6 +103,15 @@ void Menu::quit(){
 
 void Menu::startRound(){
     std::cout << "=== Start Round ===" << std::endl;
+    for (int i = 0; i<game->getNumPlayers(); i++){
+        std::cout << "TURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
+        std::cout << "Factories: " << std::endl;
+        for (int x = 0; x<NUM_FACTORIES; x++){
+            Factories* factory = game->getFactory(x);
+            std::cout << x + ": ";
+            std::cout << factory->toString() << std::endl;
+        }
+    }
 }
 
 
