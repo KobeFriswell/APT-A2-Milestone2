@@ -209,8 +209,8 @@ int dataFromFile(){
         //CREATE A PLAYER HERE
 
         std::cout << "----------------------------------------------" << std::endl;
-
-        }        
+        }
+        inFile.close();        
     }
 
     exit (EXIT_SUCCESS);
@@ -360,6 +360,7 @@ void saveToFile(string fileName, int gameStatus, LinkedList bag, LinkedList boxL
     }
     newSaveFile << "\n\n";
 
+    newSaveFile.close();
 
 }
 
