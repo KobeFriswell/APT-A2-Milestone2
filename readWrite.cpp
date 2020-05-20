@@ -217,6 +217,7 @@ int dataFromFile(){
     
 }
 
+
 /* Method creates a savefile of the game status
     requires:
     - save name
@@ -237,7 +238,128 @@ int dataFromFile(){
     - penaltyPanel/floorline
       
     */
-void saveToFile(string fileName, bool gameStatus, LinkedList bag, LinkedList boxLid, vector<char> center, vector<char> factories[numFactories], int currentPlayer, int numPlayers, Player player1, Player player2){
+void saveToFile(string fileName, int gameStatus, LinkedList bag, LinkedList boxLid, vector<char> center, vector<char> 
+                factories[numFactories], int currentPlayer, int numPlayers, 
+                Player player1, char p1RightGrid[gridSize][gridSize], char p1LeftGrid[gridSize][gridSize], char p1PenaltyPanel[penaltylength],
+                Player player2, char p2RightGrid[gridSize][gridSize], char p2LeftGrid[gridSize][gridSize], char p2PenaltyPanel[penaltylength]
+                ){
+
+    //open file stream to the selected txtfile
+    ofstream newSaveFile;
+    //if the file already exists in the file directory
+    newSaveFile.open (fileName);
+
+    //Save Date
+    newSaveFile << "#save date\n";
+    newSaveFile << "HH:MM:SS DD-MM-YYYY" << "\n\n";
+    
+    //Game status
+    newSaveFile << "#Game Status\n";
+    newSaveFile << gameStatus << "\n\n";
+
+    //Bag
+    newSaveFile << "#Bag \n";
+    for(int i = 0; i<bag.size(); i++){
+        newSaveFile << bag.get(i);
+    }
+    newSaveFile << "$\n\n";
+
+    //BoxLid
+    newSaveFile << "BoxLid\n";
+    for(int i = 0; i<boxLid.size(); i++){
+        newSaveFile << boxLid.get(i);
+    }
+    newSaveFile << "$\n\n";
+
+    //Center
+    newSaveFile << "Center\n";
+    for(unsigned i = 0; i<center.size(); i++){
+        newSaveFile << center.at(i);
+    }
+    newSaveFile << "$\n\n";
+
+    //5 Factories
+    for(int i = 0; i<numFactories; i++){
+        for(unsigned j; j < factories[i].size(); j++){
+            newSaveFile << factories[i].at(j);
+        }
+        newSaveFile << "$\n";
+    }
+    newSaveFile << "\n\n";
+
+    //current player
+    newSaveFile << "#Current Player\n";
+    newSaveFile << currentPlayer << "\n\n";
+
+    //Number of Players
+    newSaveFile << "#Number of Player\n";
+    newSaveFile << numberPlayers << "\n\n";
+
+
+    // -----------PLAYER 1----------------
+    newSaveFile << "#Player1" << "\n";
+    newSaveFile << player1.getUsername() << "\n";
+    //newSaveFile << player1.getPlayerId() << "\n";
+    newSaveFile << player1.getPlayerScore() << "\n";
+
+    //5x5 wall tiles
+    newSaveFile << "Right Wall Tile\n";
+    for (int i = 0; i < gridSize; i++){
+        for (int j = 0; j<gridSize; j++){
+            newSaveFile << p1RightGrid[i][j];
+        }
+        newSaveFile << "\n";
+    }
+    newSaveFile << "\n\n";
+
+    newSaveFile << "Left Wall Triangle\n";
+    for (int i = 0; i < gridSize; i++){
+        for (int j = 0; j<=i; j++){
+            newSaveFile << p1LeftGrid[i][j];
+        }
+        newSaveFile << "\n";
+    }
+    newSaveFile << "\n\n";
+
+
+    newSaveFile << "Penalty Panel\n";
+    for (int i = 0; i < penaltylength; i++){
+        newSaveFile << p1PenaltyPanel[i];
+    }
+    newSaveFile << "\n\n";
+
+// ---------PLAYER 2----------------
+    newSaveFile << "#Player2" << "\n";
+    newSaveFile << player2.getUsername() << "\n";
+    //newSaveFile << player2.getPlayerId() << "\n";
+    newSaveFile << player2.getPlayerScore() << "\n";
+
+    //5x5 wall tiles
+    newSaveFile << "Right Wall Tile\n";
+    for (int i = 0; i < gridSize; i++){
+        for (int j = 0; j<gridSize; j++){
+            newSaveFile << p2RightGrid[i][j];
+        }
+        newSaveFile << "\n";
+    }
+    newSaveFile << "\n\n";
+
+    newSaveFile << "Left Wall Triangle\n";
+    for (int i = 0; i < gridSize; i++){
+        for (int j = 0; j<=i; j++){
+            newSaveFile << p2LeftGrid[i][j];
+        }
+        newSaveFile << "\n";
+    }
+    newSaveFile << "\n\n";
+
+
+    newSaveFile << "Penalty Panel\n";
+    for (int i = 0; i < penaltylength; i++){
+        newSaveFile << p2PenaltyPanel[i];
+    }
+    newSaveFile << "\n\n";
+
 
 }
 
