@@ -1,49 +1,56 @@
 #include "Factories.h"
 
-Factories::Factories(){
-    numTiles = 0;
+Factories::Factories(int noOfPlayers, int seed){
+
 }
 
-//Returns the number of tiles on the factory
-//And removes them from the array
-int Factories::takeTile(char tile){
-    int tileCount = 0;
-    for (int i = 0; i<FACTORY_SIZE; i++){
-        if (tiles[i] == tile){
-            tileCount += 1;
-            tiles[i] = '-';
-        }   
+// int Factories::takeTile(Colour c, int factories){
+//     //TODO
+// }
+
+int Factories::setNoOfFactories(int NoOfFactories){
+        //TODO
+}
+
+void Factories::displayFactories() {
+   std::cout << "Factories: " <<std::endl;
+       for( int y =0; y < this-> NoOfFactories; y++)
+    { 
+        if (this->factories[0][y].getColour() != ' ')
+        { 
+             std::cout <<this-> factories[0][y].getColour()<<" ";
+        }    
     }
-
-    return tileCount;
-}
-
-//Checks for blank spot then adds the tile
-bool Factories::storeTile(char tile){
-    for (int i = 0; i<FACTORY_SIZE; i++){
-        if (tiles[i] != '-'){
-            tiles[i] = tile;
-            return true; 
+        for (int x = 1; x < this->NoOfFactories; x++)
+    {
+        std::cout << x << ": ";
+        for (int y = 0; y < NOOFTILES; y++)
+        {
+            std::cout << this -> factories[x][y].getColour()<<" ";
         }
-    }
-    return false;
+    }   
 }
 
-//Removes tile matching that char
-void Factories::removeTiles(char tile){
-    for (int i = 0; i<FACTORY_SIZE; i++){
-        if (tiles[i] == tile){
-            tiles[i] = '-';
-        }
+// bool Factories::StoreColour(Colour c, int factories){
+//     //TODO
+// }
+
+void Factories::setTileBag(LinkedList* Tilebag){
+    //TODO
+}
+
+void Factories::addLeftoverTiles(Tiles* tile){
+    if(tiles != nullptr && tile->getColour() != CURRENTLYONPLAYERS)
+    { this -> BoxLid -> addBack(numTiles);
     }
 }
 
-//Returns array in string format
-std::string Factories::toString(){
-    std::string toString;
-    for (int i = 0; i<FACTORY_SIZE; i++){
-        toString += tiles[i] + " ";
-    }
+void Factories::removeTiles(){
+    factories[0][0] = ' ';
+    this-> top = false;
+    this-> size -=1;
+}
 
-    return toString;
+void Factories::setBoxLid(LinkedList* BoxLid){
+    //TODO
 }
