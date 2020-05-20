@@ -217,6 +217,30 @@ int dataFromFile(){
     
 }
 
+/* Method creates a savefile of the game status
+    requires:
+    - save name
+    - date of save (can be done inside the method)
+    - game status (1 or 0)
+    - a bag object
+    - a boxlid
+    - a center
+    - 5 factories
+    - the current player
+    - number of players
+    THEN PLAYESRS 1 and 2 FORMAT
+    - name
+    - playerId
+    - score/points
+    - 5x5 wall tile grid
+    - 5x5 left grid in triangle ^
+    - penaltyPanel/floorline
+      
+    */
+void saveToFile(string fileName, bool gameStatus, LinkedList bag, LinkedList boxLid, vector<char> center, vector<char> factories[numFactories], int currentPlayer, int numPlayers, Player player1, Player player2){
+
+}
+
 int main(){
     dataFromFile();
 }

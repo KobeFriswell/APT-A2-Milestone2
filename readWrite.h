@@ -26,21 +26,6 @@ using std::stoi;
 using std::vector;
 
 
-// class readWrite{
-// public:
-//     readWrite();
-
-//     bool ignore(string s);
-//     int main();
-
-
-
-// private:
-// };
-
-
-
-
 // class ReadWrite{
 //     private:
 
@@ -56,46 +41,35 @@ using std::vector;
 //         int readFromFile(string inputFile);
 
 // //VARIABLES
-
 //         string line;
 //         char c;
 
 // //DATATYPES
-
 //         int hour,minute,second,day,month,year;
-
 //         string dateTime;
 //         bool gameStatus;
-
 //         LinkedList bag;
 //         vector<char> boxlid;
-
 //         vector<int> center;
 //         vector<char> factory[numFactories];
-
 //         int currentPlayer;
 //         int numberPlayers;
+//         Player players[2];
 
 // //PLAYER VARIABLES
-
 //         string playerName;
 //         int playerId;
 //         int playerScore;
 //         char rightGrid[gridSize][gridSize];
 //         char leftGrid[gridSize][gridSize];
-
 //         char penaltyPanel[penaltylength];
 
-//         Player players[2];
-
 //     public:
-
- 
 // };
 
 // #endif 
 
-    //CONST
+//CONST
 const static int gridSize = 5;
 const static int numFactories = 5;
 const static int penaltylength = 7;
@@ -104,31 +78,20 @@ int hour,minute,second,day,month,year;
 
 string dateTime;
 bool gameStatus;
-
-
-
-
 char c;
 
-//vector<int> center;
 vector<int> center;
-
-//vector<char> boxlid;
 LinkedList bag;
 LinkedList boxlid;
-
 vector<char> factory[numFactories];
 
 int currentPlayer;
 int numberPlayers;
-
 string playerName;
 int playerId;
 int playerScore;
-
 char rightGrid[gridSize][gridSize];
 char leftGrid[gridSize][gridSize];
-
 char penaltyPanel[penaltylength];
 
-//Player players[2];
+Player players[2];
