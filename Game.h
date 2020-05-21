@@ -17,8 +17,13 @@ public:
     Game(std::string player1, std::string player2);
 
     void addToPlayers(Player* player);
+
     void addToLid(char tile);
+    std::string lidToString();
+
     void addToCenter(char tile);
+    std::string centerToString();
+
     void addToTileBag(char tile);
 
     int getNumPlayers();
@@ -30,7 +35,7 @@ private:
     std::vector<char> lid;
     std::vector<char> center;
     std::vector<Factories*> factories;
-    Bag* tileBag;
+    Bag tileBag;
     
     //Cant do 2D array with 2 different types
     std::vector<Player*> players;

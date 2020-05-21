@@ -2,6 +2,7 @@
 
 Factories::Factories(){
     numTiles = 0;
+    clearFactory();
 }
 
 //Returns the number of tiles on the factory
@@ -21,8 +22,9 @@ int Factories::takeTile(char tile){
 //Checks for blank spot then adds the tile
 bool Factories::storeTile(char tile){
     for (int i = 0; i<FACTORY_SIZE; i++){
-        if (tiles[i] != '-'){
+        if (tiles[i] == '-'){
             tiles[i] = tile;
+            numTiles++;
             return true; 
         }
     }
@@ -34,6 +36,7 @@ void Factories::removeTiles(char tile){
     for (int i = 0; i<FACTORY_SIZE; i++){
         if (tiles[i] == tile){
             tiles[i] = '-';
+            numTiles--;
         }
     }
 }
@@ -42,8 +45,16 @@ void Factories::removeTiles(char tile){
 std::string Factories::toString(){
     std::string toString;
     for (int i = 0; i<FACTORY_SIZE; i++){
-        toString += tiles[i] + " ";
+        toString = toString + tiles[i] + " ";
     }
 
     return toString;
+}
+
+//Clear Array
+void Factories::clearFactory(){
+    for (int i = 0; i<FACTORY_SIZE; i++){
+        tiles[i] = '-';
+        numTiles = 0;
+    }
 }

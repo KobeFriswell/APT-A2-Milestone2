@@ -19,6 +19,7 @@ void LinkedList::clear(){
     Node* curr = head;
     Node* prev;
     head = nullptr;
+    last = nullptr;
 
     while (curr != nullptr){
         prev = curr;
@@ -70,21 +71,18 @@ void LinkedList::addBack(char data){
     listSize++;
 }
 
-char LinkedList::grabTile(int i){
-    int previousIndex = i-1;
-    Node* toRemove = getNode(i);
-    Node* next = toRemove->next;
+//Grabs First Tile as Bag is shuffled
+char LinkedList::grabTile(){
+    if (listSize>0){
+        Node* selectedTile = head;
+        char tileData = selectedTile->data;
 
-    //If previous node is the head, make new head
-    if (previousIndex >= 0){
-        Node* previous = getNode(i-1);
-        previous->next = next;
-    } else {
-        head = next;
+        head = selectedTile->next;
+
+        delete selectedTile;
+        return tileData;
+    } else{
+        return '-';
     }
     
-    char data = toRemove->data;
-    delete(toRemove);
-    listSize--;
-    return data;
 }

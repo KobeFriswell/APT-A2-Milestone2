@@ -103,14 +103,18 @@ void Menu::quit(){
 
 void Menu::startRound(){
     std::cout << "=== Start Round ===" << std::endl;
+    std::cout << game->getNumPlayers() <<std::endl;
     for (int i = 0; i<game->getNumPlayers(); i++){
         std::cout << "TURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
         std::cout << "Factories: " << std::endl;
+        std::cout << "0: " << game->centerToString() << std::endl;
         for (int x = 0; x<NUM_FACTORIES; x++){
             Factories* factory = game->getFactory(x);
-            std::cout << x + ": ";
+            std::cout << x+1 << ": ";
             std::cout << factory->toString() << std::endl;
         }
+
+        std::cout << std::endl;
     }
 }
 

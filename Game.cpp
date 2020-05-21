@@ -22,8 +22,15 @@ Game::Game(std::string player1, std::string player2){
     }
 
     // Bag
-    tileBag = new Bag();
-    
+    tileBag.shuffleBag();
+
+    //Add tiles to factories
+    for(int x = 0; x < NUM_FACTORIES; x++){
+        for (int y = 0; y<4; y++){
+            char tile = tileBag.grabTile();
+            factories.at(x)->storeTile(tile);
+        }
+    }
 }
 
 //Add player to back of vector
@@ -49,7 +56,7 @@ void Game::addToTileBag(char tile){
 
 //Returns number of players
 int Game::getNumPlayers(){
-    return numPlayers;
+    return players.size();
 }
 
 Player* Game::getPlayer(int index){
@@ -58,4 +65,22 @@ Player* Game::getPlayer(int index){
 
 Factories* Game::getFactory(int index){
     return factories.at(index);
+}
+
+std::string Game::lidToString(){
+    int lidSize = lid.size();
+    std::string toString;
+    for (int i = 0; i<lidSize; i++){
+        toString = toString + lid.at(i) + "  ";
+    }
+    return toString;
+}
+
+std::string Game::centerToString(){
+    int centerSize = center.size();
+    std::string toString;
+    for (int i = 0; i<centerSize; i++){
+        toString = toString + center.at(i) + "  ";
+    }
+    return toString;
 }

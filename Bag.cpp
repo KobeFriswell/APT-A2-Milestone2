@@ -20,8 +20,8 @@ void Bag::addTile(char tile){
     contents.addBack(tile);
 }
 
-void Bag::grabTile(int i){
-    contents.grabTile(i);
+char Bag::grabTile(){
+    return contents.grabTile();
 }
 
 //Shuffles the contents of the bag
@@ -49,6 +49,21 @@ void Bag::shuffleBag(){
         }     
     }
 
+    //Make contents the shuffled array
+    contents.clear();
+    for (int x = 0; x<bagSize-1; x++){
+        contents.addBack(shuffled[x]);
+    }
+
     delete(bagContents);
     delete(shuffled);
 }
+
+void Bag::toString(){
+    for (int i = 0; i<contents.size(); i++){
+        std::cout << contents.getData(i);
+    }
+    std::cout << std::endl;
+}
+
+

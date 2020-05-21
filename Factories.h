@@ -16,6 +16,8 @@ class Factories{
     void removeTiles(char tile);
     std::string toString();
 
+    void clearFactory();
+
     private:
     
     int numTiles;
