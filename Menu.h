@@ -31,6 +31,7 @@ private:
 
     bool valid;
     std::string action;
+    std::string fileName;
     int factoryChoice;
     char tile;
     int patternLine;

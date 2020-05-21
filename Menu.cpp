@@ -16,38 +16,57 @@ int Menu::input(){
 }
 
 void Menu::roundInput(){
-        //Check if valid input
-        valid = false;
-        while(!valid){
-            //Make variables blank when false
-            action = "";
-            factoryChoice = 0;
-            tile = '0';
-            patternLine = 0;
-            
-            std::cout << "> ";
-            std::cin >> action >> factoryChoice >> tile >> patternLine;
-            tile = toupper(tile);
-            if (action != "turn" && action != "save"){
-                std::cout << "Invalid Action (turn or save)" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
-            } else if (factoryChoice < 0 || factoryChoice >5){
-                std::cout << "Invalid Factory" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
-            } else if (tiles.find(tile) == std::string::npos){
-                std::cout << "Invalid Tile" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
-            } else if (patternLine < 1 || patternLine > 5){
-                std::cout << "Invalid Pattern Line" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
-            } else {
-                valid = true;
-            }
+    //Check if valid input
+    valid = false;
+    while(!valid){
+        //Make variables blank when false
+        action = "";
+        fileName = "";
+
+        std::cout << "\nturn or save: \n> ";
+        std::cin >> action;
+        
+        if (action != "turn" && action != "save"){
+            std::cout << "\nInvalid Action (turn or save)" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        } else if (action == "turn"){
+            bool turn = false;
+            while (!turn){
+                //Set variables to be outside range
+                factoryChoice = 100;
+                tile = '0';
+                patternLine = 0;
+
+                std::cout << "\nEnter Turn (Factory Tile PatternLine): \n>";
+                std::cin >> factoryChoice >> tile >> patternLine;
+                tile = toupper(tile);
+                if (factoryChoice < 0 || factoryChoice >5){
+                    std::cout << "\nInvalid Factory" << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                } else if (tiles.find(tile) == std::string::npos){
+                    std::cout << "\nInvalid Tile" << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                } else if (patternLine < 1 || patternLine > 5){
+                    std::cout << "\nInvalid Pattern Line" << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                } else {
+
+                    //Passed Validation - use factorieChoice, tile and patternLine
+                    turn = true;
+                    valid = true;
+                } 
+            } 
+        } else if (action == "save"){
+            std::cout << "\nEnter File Name: \n>";
+            std::cin >> fileName;
+            game->saveGame(fileName, gameStatus, currentPlayer, numberPlayers);
+            valid = true;
         }
+    }
 }
         
 //Print welcome when menu object is created
@@ -121,7 +140,8 @@ void Menu::newGame(){
 
     std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
     std::cout << "Let's Play!" << std::endl;
-
+    gameStatus = true;
+    
     startRound();
 }
 
@@ -139,7 +159,8 @@ void Menu::quit(){
 void Menu::startRound(){
     std::cout << "=== Start Round ===" << std::endl;
     for (int i = 0; i<game->getNumPlayers(); i++){
-        std::cout << "TURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
+        currentPlayer = i+1;
+        std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
         std::cout << "Factories: " << std::endl;
         std::cout << "0: " << game->centerToString() << std::endl;
         for (int x = 0; x<NUM_FACTORIES; x++){

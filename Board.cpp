@@ -10,23 +10,25 @@ void Board::setWallTile(int x, int y, char tile){
     wall[x][y] = tile;
  }
     
-int Board::getWall(){
-    //TODO
-    return 0;
+char* Board::getWall(){
+    return *wall;
 }
 
 void Board::setPatternTile(int x,int y, char tile){
-    PatternLine[x][y] = tile;
+    patternLine[x][y] = tile;
 }
     
-int Board::getPatternLine(){
-    //TODO
-    return 0;
+char* Board::getPatternLine(){
+    return *patternLine;
 }
 
 //
 void Board::dropTile(char tile){
     //TODO
+}
+
+char* Board::getFloorLine(){
+    return floorLine;
 }
 
 void Board::addFloorLine(char tile){

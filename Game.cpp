@@ -84,3 +84,21 @@ std::string Game::centerToString(){
     }
     return toString;
 }
+
+//Uses ReadWrite to write save file
+void Game::saveGame(std::string fileName, bool gameStatus, int currentPlayer, int numberPlayers){
+    ReadWrite save;
+
+    Player player1 = *players.at(0);
+    char p1RightGrid = *boards.at(0)->getWall(); 
+    char p1LeftGrid = *boards.at(0)->getPatternLine();
+    char p1PenaltyPanel = *boards.at(0)->getFloorLine();
+
+    Player player2 = *players.at(1);
+    char p2RightGrid = *boards.at(1)->getWall(); 
+    char p2LeftGrid = *boards.at(1)->getPatternLine();
+    char p2PenaltyPanel = *boards.at(1)->getFloorLine();
+
+    save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
+                p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
+}

@@ -6,6 +6,7 @@
 #include "Board.h"
 #include "Factories.h"
 #include "Bag.h"
+#include "readWrite.h"
 
 #include <string>
 #include <vector>
@@ -30,6 +31,8 @@ public:
     Player* getPlayer(int index);
 
     Factories* getFactory(int index);
+
+    void saveGame(std::string fileName, bool gameStatus, int currentPlayer, int numberPlayers);
 
 private:
     std::vector<char> lid;

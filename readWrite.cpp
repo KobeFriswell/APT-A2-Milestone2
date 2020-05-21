@@ -7,11 +7,15 @@ string line;
 //     //Empty
 // }
 
-bool ignore(string s){
+ReadWrite::ReadWrite(){
+    
+}
+
+bool ReadWrite::ignore(string s){
     return (s.length()==0 || s[0]=='#' || s[0]=='/');
 }
 
-int dataFromFile(){
+int ReadWrite::readFromFile(){
     
     std::ifstream inFile("example.txt");
     string line;
@@ -238,8 +242,8 @@ int dataFromFile(){
     - penaltyPanel/floorline
       
     */
-void saveToFile(string fileName, int gameStatus, LinkedList bag, LinkedList boxLid, vector<char> center, vector<char> 
-                factories[numFactories], int currentPlayer, int numPlayers, 
+void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> 
+                factories, int currentPlayer, int numPlayers, 
                 Player player1, char p1RightGrid[gridSize][gridSize], char p1LeftGrid[gridSize][gridSize], char p1PenaltyPanel[penaltylength],
                 Player player2, char p2RightGrid[gridSize][gridSize], char p2LeftGrid[gridSize][gridSize], char p2PenaltyPanel[penaltylength]
                 ){
