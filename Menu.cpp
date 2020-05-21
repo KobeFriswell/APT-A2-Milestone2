@@ -14,6 +14,41 @@ int Menu::input(){
     std::cout << std::endl;
     return input;
 }
+
+void Menu::roundInput(){
+        //Check if valid input
+        while(!valid){
+            //Make variables blank when false
+            valid = false;
+            action = "";
+            factoryChoice = 0;
+            tile = '0';
+            patternLine = 0;
+            
+            std::cout << "> ";
+            std::cin >> action >> factoryChoice >> tile >> patternLine;
+            tile = toupper(tile);
+            if (action != "turn" && action != "save"){
+                std::cout << "Invalid Action" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            } else if (factoryChoice < 0 || factoryChoice >5){
+                std::cout << "Invalid Factory" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            } else if (tiles.find(tile) == std::string::npos){
+                std::cout << "Invalid Tile" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            } else if (patternLine < 1 || patternLine > 5){
+                std::cout << "Invalid Pattern Line" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            } else {
+                valid = true;
+            }
+        }
+}
         
 //Print welcome when menu object is created
 void Menu::welcome(){
@@ -103,7 +138,6 @@ void Menu::quit(){
 
 void Menu::startRound(){
     std::cout << "=== Start Round ===" << std::endl;
-    std::cout << game->getNumPlayers() <<std::endl;
     for (int i = 0; i<game->getNumPlayers(); i++){
         std::cout << "TURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
         std::cout << "Factories: " << std::endl;
@@ -113,9 +147,16 @@ void Menu::startRound(){
             std::cout << x+1 << ": ";
             std::cout << factory->toString() << std::endl;
         }
-
+        
         std::cout << std::endl;
+
+        std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
+        //Call Mosaic Print Here
+
+        roundInput();
+        
     }
+    std::cout << "=== End Round ===" << std::endl;
 }
 
 
