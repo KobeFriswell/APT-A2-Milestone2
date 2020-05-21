@@ -17,9 +17,9 @@ int Menu::input(){
 
 void Menu::roundInput(){
         //Check if valid input
+        valid = false;
         while(!valid){
             //Make variables blank when false
-            valid = false;
             action = "";
             factoryChoice = 0;
             tile = '0';
@@ -29,7 +29,7 @@ void Menu::roundInput(){
             std::cin >> action >> factoryChoice >> tile >> patternLine;
             tile = toupper(tile);
             if (action != "turn" && action != "save"){
-                std::cout << "Invalid Action" << std::endl;
+                std::cout << "Invalid Action (turn or save)" << std::endl;
                 std::cin.clear();
                 std::cin.ignore(1000, '\n');
             } else if (factoryChoice < 0 || factoryChoice >5){
@@ -153,8 +153,7 @@ void Menu::startRound(){
         std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
         //Call Mosaic Print Here
 
-        roundInput();
-        
+        roundInput();           
     }
     std::cout << "=== End Round ===" << std::endl;
 }
