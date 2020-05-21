@@ -260,14 +260,15 @@ void saveToFile(string fileName, int gameStatus, LinkedList bag, LinkedList boxL
     //Bag
     newSaveFile << "#Bag \n";
     for(int i = 0; i<bag.size(); i++){
-        newSaveFile << bag.get(i);
+        newSaveFile << bag.getData(i);
+        
     }
     newSaveFile << "$\n\n";
 
     //BoxLid
     newSaveFile << "BoxLid\n";
     for(int i = 0; i<boxLid.size(); i++){
-        newSaveFile << boxLid.get(i);
+        newSaveFile << boxLid.getData(i);
     }
     newSaveFile << "$\n\n";
 
