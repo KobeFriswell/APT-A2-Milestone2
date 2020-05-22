@@ -66,4 +66,11 @@ void Bag::toString(){
     std::cout << std::endl;
 }
 
+std::string Bag::saveString(){
+    std::string s;
+    for (int i = 0; i<contents.size(); i++){
+        s = s + contents.getData(i);
+    }
+}
+
 

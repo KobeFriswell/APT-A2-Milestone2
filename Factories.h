@@ -15,6 +15,7 @@ class Factories{
     bool storeTile(char tile);
     void removeTiles(char tile);
     std::string toString();
+    std::string saveString();
 
     void clearFactory();
 

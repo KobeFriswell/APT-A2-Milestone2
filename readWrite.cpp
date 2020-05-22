@@ -3,12 +3,9 @@
 std::ifstream inFile("example.txt");
 string line;
 
-// readWrite::readWrite(){
-//     //Empty
-// }
 
 ReadWrite::ReadWrite(){
-    
+    readFromFile();
 }
 
 bool ReadWrite::ignore(string s){
@@ -70,7 +67,7 @@ int ReadWrite::readFromFile(){
         //TODO vector?
         for (unsigned i=0; i<line.length()-1; ++i){
             c = line.at(i);
-            boxlid.addFront(c);
+            boxlid.push_back(c);
         }
 
         cout<<"Box lid " + line<<endl;
@@ -95,7 +92,7 @@ int ReadWrite::readFromFile(){
             getline(inFile,line);
         }
         //for the 5 factories
-        for(int i=0;i<gridSize;i++){
+        for(int i=0;i<GRID_SIZE;i++){
             //print the content of the factory as a string
             cout<< i <<"factory " + line<<endl;
 
@@ -126,11 +123,11 @@ int ReadWrite::readFromFile(){
         cout<<"number palyers " << numberPlayers <<endl;
 
         cout<<"----------------------------------------------"<<endl;
-// ADDING PLAYERS
 
-        for(int i=0; i<numberPlayers ;i++){
-            cout<<"PLAYER: "<<i+1<<endl;
-            //player name
+// ADDING PLAYER 1
+
+        cout<<"PLAYER: "<< "1" <<endl;
+        //player name
             //player id
             //players score
             //right grid
@@ -138,30 +135,30 @@ int ReadWrite::readFromFile(){
             //penalty panel
 
 
+        getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        playerName[1] = line;
+        cout<<"Player name " << playerName[1] <<endl;
+
              getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        playerName = line;
-        cout<<"Player name " << playerName <<endl;
 
-             getline(inFile,line);
-        while(ignore(line)){
-            getline(inFile,line);
-        }
-
-
-        playerId=std::stoi(line);
-        cout<<"playerid " << playerId<<endl;
+        playerId[1] = std::stoi(line);
+        cout<<"playerid " << playerId[1] <<endl;
 
          getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        playerScore = stoi(line);
-        cout<<"player Score " << playerScore <<endl;
+        playerScore[1] = stoi(line);
+        cout<<"player Score " << playerScore[1] <<endl;
 
          getline(inFile,line);
         while(ignore(line)){
@@ -170,12 +167,13 @@ int ReadWrite::readFromFile(){
 
         //Player patternlines on the right
         cout<<"rightgrid:"<<endl;
-        for (int i=0;i<gridSize;i++){
-            for (int j=0;j<gridSize;j++){
+        for (int i=0;i<GRID_SIZE;i++){
+            for (int j=0;j<GRID_SIZE;j++){
+
                 //add chatacters to array
                 c = line.at(j);
-                rightGrid[i][j] = c;
-                cout<<rightGrid[i][j];
+                p1RightGrid[i][j] = c;
+                cout<<p1RightGrid[i][j];
             }
             cout<<endl;
             getline(inFile,line);
@@ -188,11 +186,11 @@ int ReadWrite::readFromFile(){
 
         //Players tiles in a tiangle on the left side
         cout<<"leftgrid:"<<endl;
-        for (int i =0; i<gridSize; i++){
+        for (int i =0; i<GRID_SIZE; i++){
             for (int j=0; j<=i; j++){
                 c = line.at(j);
-                leftGrid[i][j] = c;
-                cout<<leftGrid[i][j];
+                p1LeftGrid[i][j] = c;
+                cout<<p1LeftGrid[i][j];
             }
             getline(inFile,line);
             cout<<endl;
@@ -202,18 +200,100 @@ int ReadWrite::readFromFile(){
             getline(inFile,line);
         }
 
-        cout<<"penaltyPanel:";
-        for(int i=0; i<penaltylength;i++){
-            c = line.at(i);
-            penaltyPanel[i] = c;
-            cout<< penaltyPanel[i];
-        }
-        cout<<endl;
+    cout<<"penaltyPanel:";
+    for(int i=0; i<PENALTY_LENGTH;i++){
+        c = line.at(i);
+        p1PenaltyPanel[i] = c;
+        cout<< p1PenaltyPanel[i];
+    }
+    cout<<endl;
 
-        //CREATE A PLAYER HERE
+    std::cout << "----------------------------------------------" << std::endl;
+    
+// ADDING PLAYER 2
 
-        std::cout << "----------------------------------------------" << std::endl;
+        cout<<"PLAYER: "<< "2" <<endl;
+        //player name
+            //player id
+            //players score
+            //right grid
+            //left grid
+            //penalty panel
+
+
+        getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
         }
+
+        playerName[2] = line;
+        cout<<"Player name " << playerName[2] <<endl;
+
+             getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+
+        playerId[2] = std::stoi(line);
+        cout<<"playerid " << playerId[2] <<endl;
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        playerScore[2] = stoi(line);
+        cout<<"player Score " << playerScore[2] <<endl;
+
+         getline(inFile,line);
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        //Player patternlines on the right
+        cout<<"rightgrid:"<<endl;
+        for (int i=0;i<GRID_SIZE;i++){
+            for (int j=0;j<GRID_SIZE;j++){
+
+                //add chatacters to array
+                c = line.at(j);
+                p2RightGrid[i][j] = c;
+                cout<<p2RightGrid[i][j];
+            }
+            cout<<endl;
+            getline(inFile,line);
+            
+        }
+
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+        //Players tiles in a tiangle on the left side
+        cout<<"leftgrid:"<<endl;
+        for (int i =0; i<GRID_SIZE; i++){
+            for (int j=0; j<=i; j++){
+                c = line.at(j);
+                p2LeftGrid[i][j] = c;
+                cout<<p2LeftGrid[i][j];
+            }
+            getline(inFile,line);
+            cout<<endl;
+        }
+
+        while(ignore(line)){
+            getline(inFile,line);
+        }
+
+    cout<<"penaltyPanel:";
+    for(int i=0; i<PENALTY_LENGTH;i++){
+        c = line.at(i);
+        p2PenaltyPanel[i] = c;
+        cout<< p2PenaltyPanel[i];
+    }
+    cout<<endl;
+
         inFile.close();        
     }
 
@@ -244,8 +324,8 @@ int ReadWrite::readFromFile(){
     */
 void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> 
                 factories, int currentPlayer, int numPlayers, 
-                Player player1, char p1RightGrid[gridSize][gridSize], char p1LeftGrid[gridSize][gridSize], char p1PenaltyPanel[penaltylength],
-                Player player2, char p2RightGrid[gridSize][gridSize], char p2LeftGrid[gridSize][gridSize], char p2PenaltyPanel[penaltylength]
+                Player player1, char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[PENALTY_LENGTH],
+                Player player2, char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[PENALTY_LENGTH]
                 ){
 
     //open file stream to the selected txtfile
@@ -263,16 +343,17 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
     //Bag
     newSaveFile << "#Bag \n";
-    for(int i = 0; i<bag.size(); i++){
-        newSaveFile << bag.getData(i);
-        
-    }
+    string s = bag.saveString();
+
+    //newSaveFile << bag.getData(i);
+    newSaveFile << bag.saveString();
+
     newSaveFile << "$\n\n";
 
     //BoxLid
     newSaveFile << "BoxLid\n";
-    for(int i = 0; i<boxLid.size(); i++){
-        newSaveFile << boxLid.getData(i);
+    for(unsigned i = 0; i<boxLid.size(); i++){
+        newSaveFile << boxLid.at(i);
     }
     newSaveFile << "$\n\n";
 
@@ -284,10 +365,10 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
     newSaveFile << "$\n\n";
 
     //5 Factories
-    for(int i = 0; i<numFactories; i++){
-        for(unsigned j; j < factories[i].size(); j++){
-            newSaveFile << factories[i].at(j);
-        }
+    for(unsigned i = 0; i< NUM_FACTORIES; i++){
+
+        newSaveFile << factories.at(i) -> saveString();
+
         newSaveFile << "$\n";
     }
     newSaveFile << "\n\n";
@@ -304,13 +385,13 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
     // -----------PLAYER 1----------------
     newSaveFile << "#Player1" << "\n";
     newSaveFile << player1.getUsername() << "\n";
-    //newSaveFile << player1.getPlayerId() << "\n";
+    newSaveFile << player1.getPlayerId() << "\n";
     newSaveFile << player1.getPlayerScore() << "\n";
 
     //5x5 wall tiles
     newSaveFile << "Right Wall Tile\n";
-    for (int i = 0; i < gridSize; i++){
-        for (int j = 0; j<gridSize; j++){
+    for (int i = 0; i < GRID_SIZE; i++){
+        for (int j = 0; j<GRID_SIZE; j++){
             newSaveFile << p1RightGrid[i][j];
         }
         newSaveFile << "\n";
@@ -318,7 +399,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
     newSaveFile << "\n\n";
 
     newSaveFile << "Left Wall Triangle\n";
-    for (int i = 0; i < gridSize; i++){
+    for (int i = 0; i < GRID_SIZE; i++){
         for (int j = 0; j<=i; j++){
             newSaveFile << p1LeftGrid[i][j];
         }
@@ -328,7 +409,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
 
     newSaveFile << "Penalty Panel\n";
-    for (int i = 0; i < penaltylength; i++){
+    for (int i = 0; i < PENALTY_LENGTH; i++){
         newSaveFile << p1PenaltyPanel[i];
     }
     newSaveFile << "\n\n";
@@ -336,13 +417,13 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 // ---------PLAYER 2----------------
     newSaveFile << "#Player2" << "\n";
     newSaveFile << player2.getUsername() << "\n";
-    //newSaveFile << player2.getPlayerId() << "\n";
+    newSaveFile << player2.getPlayerId() << "\n";
     newSaveFile << player2.getPlayerScore() << "\n";
 
     //5x5 wall tiles
     newSaveFile << "Right Wall Tile\n";
-    for (int i = 0; i < gridSize; i++){
-        for (int j = 0; j<gridSize; j++){
+    for (int i = 0; i < GRID_SIZE; i++){
+        for (int j = 0; j<GRID_SIZE; j++){
             newSaveFile << p2RightGrid[i][j];
         }
         newSaveFile << "\n";
@@ -350,7 +431,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
     newSaveFile << "\n\n";
 
     newSaveFile << "Left Wall Triangle\n";
-    for (int i = 0; i < gridSize; i++){
+    for (int i = 0; i < GRID_SIZE; i++){
         for (int j = 0; j<=i; j++){
             newSaveFile << p2LeftGrid[i][j];
         }
@@ -360,7 +441,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
 
     newSaveFile << "Penalty Panel\n";
-    for (int i = 0; i < penaltylength; i++){
+    for (int i = 0; i < PENALTY_LENGTH; i++){
         newSaveFile << p2PenaltyPanel[i];
     }
     newSaveFile << "\n\n";
@@ -369,6 +450,6 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
 }
 
-int main(){
-    dataFromFile();
-}
+// int main(){
+//     readFromFile();
+// }

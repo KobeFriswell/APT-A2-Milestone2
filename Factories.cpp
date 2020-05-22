@@ -51,6 +51,14 @@ std::string Factories::toString(){
     return toString;
 }
 
+std::string Factories::saveString(){
+    std::string s;
+     for (int i = 0; i<FACTORY_SIZE; i++){
+        s = s + tiles[i];
+    }
+    return s;
+}
+
 //Clear Array
 void Factories::clearFactory(){
     for (int i = 0; i<FACTORY_SIZE; i++){

@@ -99,6 +99,6 @@ void Game::saveGame(std::string fileName, bool gameStatus, int currentPlayer, in
     char p2LeftGrid = *boards.at(1)->getPatternLine();
     char p2PenaltyPanel = *boards.at(1)->getFloorLine();
 
-    save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
-                p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
+    // save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
+    //             p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
 }
