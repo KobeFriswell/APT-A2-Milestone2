@@ -1,10 +1,11 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <string>
+#include <iostream>
+
 #define GRID_SIZE 5
 #define PENALTY_LENGTH 7
-
-#include "Tiles.h"
 
 #define FLOOR_LINE_SIZE 7
 
