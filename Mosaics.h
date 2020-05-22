@@ -6,8 +6,8 @@
 #include "Player.h"
 #include "LinkedList.h"
 #include "Game.h"
+#include "Board.h"
 
-#define BROKEN_AREA 7
 #define BOARD_SIZE 5
 
 class Mosaics {
@@ -28,20 +28,11 @@ class Mosaics {
     bool WhosFirst();
     bool whosTurn();
     LinkedList* returnTiles();
-
-    void setPlayer(Player* player);
-    void setPointBoard(char** pointBoard);
-    void setTurnBoard(char** turnBoard);
-    void setRemainder(LinkedList* remainder);
-    void setBroken(char* tile, int location);
-    void setPointCalculator(char** pointCalculator);
-    void setTurn(bool turn);
-    void setFirst(bool first);
+    void setSumTotal(int** sumtotal);
    
     Player* getPlayer();
     char** getPointBoard();
     char** getTurnBoard();
-    LinkedList* getRemainder();
     char* getBroken(int content);
     char** getPointCalculator();
 
@@ -56,10 +47,9 @@ class Mosaics {
     int brokenScore = 0;
     char** turnBoard;
     char** pointBoard;
-    LinkedList* remainder;
     char** pointCalculator;
     bool* colourCounting;
-    char* broken[BROKEN_AREA];
+    char* broken[FLOOR_LINE_SIZE];
 };
 
 #endif

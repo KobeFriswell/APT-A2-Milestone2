@@ -17,7 +17,7 @@ public:
 
    void addFront(char data);
    void addBack(char data);
-   char grabTile(int i);
+   char grabTile();
 
 private:
    Node* head;

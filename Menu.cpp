@@ -63,7 +63,7 @@ void Menu::roundInput(){
         } else if (action == "save"){
             std::cout << "\nEnter File Name: \n>";
             std::cin >> fileName;
-            game->saveGame(fileName, gameStatus, currentPlayer, numberPlayers);
+            game->saveGame(fileName);
             valid = true;
         }
     }
@@ -106,6 +106,11 @@ void Menu::mainMenu(){
             std::cin.clear();
             std::cin.ignore(1000, '\n');
         }
+        else if (std::   cin.eof())
+            {
+                std::cout << "Goodbye." <<std::endl;
+                std::exit(EXIT_SUCCESS);
+            }
     }
 }
 
@@ -140,7 +145,7 @@ void Menu::newGame(){
 
     std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
     std::cout << "Let's Play!" << std::endl;
-    gameStatus = true;
+    game->setGameStatus(true);
     
     startRound();
 }
@@ -157,27 +162,34 @@ void Menu::quit(){
 }
 
 void Menu::startRound(){
-    std::cout << "=== Start Round ===" << std::endl;
-    for (int i = 0; i<game->getNumPlayers(); i++){
-        currentPlayer = i+1;
-        std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
-        std::cout << "Factories: " << std::endl;
-        std::cout << "0: " << game->centerToString() << std::endl;
-        for (int x = 0; x<NUM_FACTORIES; x++){
-            Factories* factory = game->getFactory(x);
-            std::cout << x+1 << ": ";
-            std::cout << factory->toString() << std::endl;
+    while(true){
+        std::cout << "=== Start Round ===" << std::endl;
+        for (int i = 0; i<game->getNumPlayers(); i++){
+            game->setCurrentPlayer(i+1);
+            std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
+            std::cout << "Factories: " << std::endl;
+            std::cout << "0: " << game->centerToString() << std::endl;
+            for (int x = 0; x<NUM_FACTORIES; x++){
+                Factories* factory = game->getFactory(x);
+                std::cout << x+1 << ": ";
+                std::cout << factory->toString() << std::endl;
+            }
+            
+            std::cout << std::endl;
+
+            std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
+            //Call Mosaic Print Here
+
+            bool validTurn = false;
+            while (!validTurn){
+                roundInput(); 
+                validTurn = game->playerTurn(factoryChoice, tile, patternLine);
+            }
         }
-        
-        std::cout << std::endl;
-
-        std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
-        //Call Mosaic Print Here
-
-        roundInput();           
+        game->finishRound();
+        std::cout << "=== End Round ===" << std::endl;
     }
-    std::cout << "=== End Round ===" << std::endl;
 }
 
 
-    
+
