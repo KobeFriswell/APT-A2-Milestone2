@@ -9,7 +9,8 @@ Board::Board(){
 void Board::setWallTile(int x, int y, char tile){
     wall[x][y] = tile;
  }
-    
+
+//Returns wall in string format
 std::string Board::getWall(){
     std::string toString;
     for (int i = 0; i<5; i++){
@@ -20,6 +21,7 @@ std::string Board::getWall(){
     return toString;
 }
 
+//Used from player input, adds tiles to patternline
 bool Board::setPatternTile(int line, char tile, int numTiles){
     //Checks if enough free spots
     int lineChoice = line - 1;
@@ -115,6 +117,8 @@ void Board::addFloorLine(char tile){
 
 //Checks PatternLines for full then move to wall
 void Board::checkPatternLines(){
+    numToLid.clear();
+    tileToLid.clear();
     char wallTile;
     for (int line = 0; line<5; line++){
         bool full = true;
@@ -127,6 +131,8 @@ void Board::checkPatternLines(){
             wallTile = patternLineContains(line);
             clearPatternLine(line);
             addToWall(line, wallTile);
+            numToLid.push_back(line+1);
+            tileToLid.push_back(wallTile);
         }
     }
 }
@@ -145,4 +151,12 @@ void Board::addToWall(int line, char tile){
             wall[line][column] = tile;
         }
     }
+}
+
+std::vector<int> Board::getNumToLid(){
+    return numToLid;
+}
+
+std::vector<char> Board::getTileToLid(){
+    return tileToLid;
 }

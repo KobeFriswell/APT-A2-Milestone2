@@ -127,6 +127,16 @@ void Game::setNumberPlayers(){
 
 void Game::finishRound(){
     for (int i = 0; i<numPlayers; i++){
-        boards.at(i)->checkPatternLines();
+        Board* playerBoard = boards.at(i);
+        playerBoard->checkPatternLines();
+        std::vector<int> numToLid = playerBoard->getNumToLid();
+        std::vector<char> tileToLid = playerBoard->getTileToLid();
+        int vectorSize = numToLid.size();
+        for (int i = 0; i<vectorSize; i++){
+            for (int x = 0; x<=numToLid.at(i); x++){
+                lid.push_back(tileToLid.at(i));
+            }
+        }
+        std::cout << "LID SIZE: " << lid.size() << std::endl;
     }
 }

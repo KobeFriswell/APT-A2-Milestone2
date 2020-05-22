@@ -3,6 +3,8 @@
 
 #include "Tiles.h"
 
+#include <vector>
+
 #define FLOOR_LINE_SIZE 7
 
 class Board {
@@ -27,6 +29,8 @@ public:
     char dropTile(char tile);
     void addFloorLine(char tile);
 
+    std::vector<int> getNumToLid();
+    std::vector<char> getTileToLid();
 private: 
 
     char wall[5][5] = {
@@ -58,6 +62,8 @@ private:
     char floorLine[FLOOR_LINE_SIZE] = {'-'};
     
     //int scoreTrack;
+    std::vector<int> numToLid;
+    std::vector<char> tileToLid;
 };
 
 #endif
