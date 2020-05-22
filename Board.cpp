@@ -26,13 +26,23 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
     if (numTiles == 0){
         std::cout << "\nError: Tile Doesnt Exist In Factory\n" << std::endl;
         return false;
-    }else if (getFreePatterLine(lineChoice) < numTiles){
-        std::cout << "\nError: More Tiles Than Line\n" << std::endl;
-        return false;
     } else if(patternLineContains(lineChoice) != '0' && patternLineContains(lineChoice) != tile){
         std::cout << "\nError: Pattern Line already contains different tile\n" << std::endl;
         return false;
     } else{
+        //Drops tiles to floorline
+        if (getFreePatterLine(lineChoice) < numTiles){
+            int extraTiles = numTiles-getFreePatterLine(lineChoice);
+            numTiles = numTiles-extraTiles;
+            int index = 0;
+            while (extraTiles != 0){
+                if (floorLine[index] == '-'){
+                    floorLine[index] = tile;
+                    extraTiles--;
+                }
+                index++;
+            }
+        }
         int addedTiles = 0;
         int index = 5;
         while (addedTiles != numTiles){
@@ -102,3 +112,5 @@ void Board::addFloorLine(char tile){
         }
     }
 }
+
+//Checks PatternLines for Full then move to wall
