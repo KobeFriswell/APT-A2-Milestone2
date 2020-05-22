@@ -66,7 +66,7 @@ class ReadWrite{
         vector<char> factory[NUM_FACTORIES];
         int currentPlayer;
         int numberPlayers;
-        Player* players[NUM_PLAYERS];
+        Player* player[NUM_PLAYERS];
 
 //PLAYER VARIABLES
         string playerName[NUM_PLAYERS];

@@ -142,16 +142,16 @@ int ReadWrite::readFromFile(){
 
         playerName[0] = line;
         cout<<"Player name " << playerName[0] <<endl;
-        player[0].setPlayerName(playerName[0]);
-             getline(inFile,line);
+        player[0] = new Player(playerName[0]);
+        getline(inFile,line);
         while(ignore(line)){
-            getline(inFile,line);
+        getline(inFile,line);
         }
 
 
         playerId[0] = std::stoi(line);
         cout<<"playerid " << playerId[0] <<endl;
-        player[0].setPlayerId(playerId[0]);
+        player[0] -> setPlayerId(playerId[0]);
 
          getline(inFile,line);
         while(ignore(line)){
@@ -160,7 +160,7 @@ int ReadWrite::readFromFile(){
 
         playerScore[0] = stoi(line);
         cout<<"player Score " << playerScore[0] <<endl;
-        player[0].setScore(playerScore[0]);
+        player[0] -> setPlayerScore(playerScore[0]);
 
          getline(inFile,line);
         while(ignore(line)){
@@ -228,8 +228,10 @@ int ReadWrite::readFromFile(){
             getline(inFile,line);
         }
 
+        
         playerName[1] = line;
         cout<<"Player name " << playerName[1] <<endl;
+        player[1] = new Player(playerName[1]);
 
              getline(inFile,line);
         while(ignore(line)){
@@ -239,6 +241,7 @@ int ReadWrite::readFromFile(){
 
         playerId[1] = std::stoi(line);
         cout<<"playerid " << playerId[1] <<endl;
+        player[1] -> setPlayerId(playerId[1]);
 
          getline(inFile,line);
         while(ignore(line)){
@@ -247,6 +250,7 @@ int ReadWrite::readFromFile(){
 
         playerScore[1] = stoi(line);
         cout<<"player Score " << playerScore[1] <<endl;
+        player[1] -> setPlayerScore(playerScore[1]);
 
          getline(inFile,line);
         while(ignore(line)){
@@ -456,6 +460,6 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 //     readFromFile();
 // }
 
-int loadPlayerScore(int player){
-    return playerScore[player-1];
-}
+// int loadPlayerScore(int playerId){
+//     return playerScore[playerId-1];
+// }
