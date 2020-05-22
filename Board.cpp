@@ -40,13 +40,23 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
     if (numTiles == 0){
         std::cout << "\nError: Tile Doesnt Exist In Factory\n" << std::endl;
         return false;
-    }else if (getFreePatterLine(lineChoice) < numTiles){
-        std::cout << "\nError: More Tiles Than Line\n" << std::endl;
-        return false;
     } else if(patternLineContains(lineChoice) != '0' && patternLineContains(lineChoice) != tile){
         std::cout << "\nError: Pattern Line already contains different tile\n" << std::endl;
         return false;
     } else{
+        //Drops tiles to floorline
+        if (getFreePatterLine(lineChoice) < numTiles){
+            int extraTiles = numTiles-getFreePatterLine(lineChoice);
+            numTiles = numTiles-extraTiles;
+            int index = 0;
+            while (extraTiles != 0){
+                if (floorLine[index] == '-'){
+                    floorLine[index] = tile;
+                    extraTiles--;
+                }
+                index++;
+            }
+        }
         int addedTiles = 0;
         int index = 5;
         while (addedTiles != numTiles){
@@ -113,6 +123,40 @@ void Board::addFloorLine(char tile){
     for (int i = 0; i<FLOOR_LINE_SIZE; i++){
         if (floorLine[i]!='-'){
             floorLine[i] = tile;
+        }
+    }
+}
+
+//Checks PatternLines for full then move to wall
+void Board::checkPatternLines(){
+    char wallTile;
+    for (int line = 0; line<5; line++){
+        bool full = true;
+        for (int tile = 0; tile<5; tile++){
+            if (patternLine[line][tile] == '-'){
+                full = false;
+            }
+        }
+        if (full){
+            wallTile = patternLineContains(line);
+            clearPatternLine(line);
+            addToWall(line, wallTile);
+        }
+    }
+}
+
+//Writes '-' for whole line
+void Board::clearPatternLine(int line){
+    for (int index = 5; index>(5-line); index--){
+        patternLine[line][index] = '-';
+    }
+}
+
+//Adds character to wall in its correct position
+void Board::addToWall(int line, char tile){
+    for (int column = 0; column<5; column++){
+        if (wallTemplate[line][column] == tile){
+            wall[line][column] = tile;
         }
     }
 }
