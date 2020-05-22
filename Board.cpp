@@ -22,12 +22,24 @@ std::string Board::getWall(){
 
 bool Board::setPatternTile(int line, char tile, int numTiles){
     //Checks if enough free spots
-    if (getFreePatterLine(line) < numTiles || (patternLineContains(line) != '0' || patternLineContains(line) != tile)){
+    int lineChoice = line - 1;
+    if (numTiles == 0){
+        std::cout << "\nError: Tile Doesnt Exist In Factory\n" << std::endl;
+        return false;
+    }else if (getFreePatterLine(lineChoice) < numTiles){
+        std::cout << "\nError: More Tiles Than Line\n" << std::endl;
+        return false;
+    } else if(patternLineContains(lineChoice) != '0' && patternLineContains(lineChoice) != tile){
+        std::cout << "\nError: Pattern Line already contains different tile\n" << std::endl;
         return false;
     } else{
-        for (int i = 5; i>(5-numTiles); i--){
-            if (patternLine[line][i] == '-'){
-                patternLine[line][i] = tile;
+        int addedTiles = 0;
+        int index = 5;
+        while (addedTiles != numTiles){
+            index--; 
+            if (patternLine[lineChoice][index] == '-'){
+                patternLine[lineChoice][index] = tile;
+                addedTiles ++;
             }
         }
         return true;
@@ -49,14 +61,15 @@ int Board::getFreePatterLine(int line){
 char Board::patternLineContains(int line){
     char tile = '0';
     for (int i = 0; i<5; i++){
-        if (patternLine[line][i] != '-' || patternLine[line][i] != '.'){
-            tile = patternLine[line][i];
+        char patternTile = patternLine[line][i];
+        if (patternTile != '-' && patternTile != '.'){
+            tile = patternTile;
         }
     }
     return tile;
 }
     
-std::string Board::getPatternLine(){
+std::string Board::getPatternLines(){
     std::string toString;
     for (int i = 0; i<5; i++){
         for (int x = 0; x<5; x++){
@@ -69,10 +82,15 @@ std::string Board::getPatternLine(){
 //Returns the tile being dropped
 char Board::dropTile(char tile){
     //TODO
+    return '0';
 }
 
 std::string Board::getFloorLine(){
-    return floorLine;
+    std::string toString;
+    for (int i = 0; i<FLOOR_LINE_SIZE; i++){
+        toString = toString + floorLine[i];
+    }
+    return toString;
 }
 
 void Board::addFloorLine(char tile){

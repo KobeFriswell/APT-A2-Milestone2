@@ -25,7 +25,7 @@ public:
     void addToCenter(char tile);
     std::string centerToString();
 
-    void playerTurn(int factoryChoice, char tile, int patternLine);
+    bool playerTurn(int factoryChoice, char tile, int patternLine);
 
     void addToTileBag(char tile);
 

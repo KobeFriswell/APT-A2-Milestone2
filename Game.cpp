@@ -86,12 +86,12 @@ std::string Game::centerToString(){
 }
 
 //Takes player turn from menu input
-void Game::playerTurn(int factoryChoice, char tile, int patternLine){
+bool Game::playerTurn(int factoryChoice, char tile, int patternLine){
     Factories* factory = factories.at(factoryChoice-1);
     int numTiles = factory->takeTile(tile);
 
     //Add number of Tiles to the chosen patternLine of a players board
-    boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, numTiles);
+    return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, numTiles);
 }
 
 //Uses ReadWrite to write save file
@@ -100,12 +100,12 @@ void Game::saveGame(std::string fileName){
 
     Player player1 = *players.at(0);
     std::string p1RightGrid = boards.at(0)->getWall(); 
-    std::string p1LeftGrid = boards.at(0)->getPatternLine();
+    std::string p1LeftGrid = boards.at(0)->getPatternLines();
     std::string p1PenaltyPanel = boards.at(0)->getFloorLine();
 
     Player player2 = *players.at(1);
     std::string p2RightGrid = boards.at(1)->getWall(); 
-    std::string p2LeftGrid = boards.at(1)->getPatternLine();
+    std::string p2LeftGrid = boards.at(1)->getPatternLines();
     std::string p2PenaltyPanel = boards.at(1)->getFloorLine();
 
     // save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,

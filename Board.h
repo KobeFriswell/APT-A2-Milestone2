@@ -15,7 +15,7 @@ public:
     std::string getWall();
 
     bool setPatternTile(int line, char tile, int numTiles);
-    std::string getPatternLine();
+    std::string getPatternLines();
     int getFreePatterLine(int line);
     char patternLineContains(int line);
 

@@ -71,6 +71,7 @@ std::string Bag::saveString(){
     for (int i = 0; i<contents.size(); i++){
         s = s + contents.getData(i);
     }
+    return s;
 }
 
 

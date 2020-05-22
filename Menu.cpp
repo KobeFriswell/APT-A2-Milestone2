@@ -175,9 +175,11 @@ void Menu::startRound(){
         std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
         //Call Mosaic Print Here
 
-        roundInput();   
-        //Move tiles from factory to patternLine
-        game->playerTurn(factoryChoice, tile, patternLine);
+        bool validTurn = false;
+        while (!validTurn){
+            roundInput(); 
+            validTurn = game->playerTurn(factoryChoice, tile, patternLine);
+        }
     }
     std::cout << "=== End Round ===" << std::endl;
 }
