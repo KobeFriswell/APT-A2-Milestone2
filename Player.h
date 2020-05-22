@@ -15,6 +15,7 @@ public:
     Player* getPlayer();
     
     int getPlayerScore();  
+    int getPlayerId();
     void setPlayerScore(int point);
     
     void DisplayStatus();
@@ -24,6 +25,7 @@ private:
     std::string username;
     int score;
     int point;
+    int id;
     };
     
 #endif 

@@ -6,6 +6,7 @@
 #include "Board.h"
 #include "Factories.h"
 #include "Bag.h"
+#include "readWrite.h"
 
 #include <string>
 #include <vector>
@@ -17,8 +18,13 @@ public:
     Game(std::string player1, std::string player2);
 
     void addToPlayers(Player* player);
+
     void addToLid(char tile);
+    std::string lidToString();
+
     void addToCenter(char tile);
+    std::string centerToString();
+
     void addToTileBag(char tile);
 
     int getNumPlayers();
@@ -26,11 +32,13 @@ public:
 
     Factories* getFactory(int index);
 
+    void saveGame(std::string fileName, bool gameStatus, int currentPlayer, int numberPlayers);
+
 private:
     std::vector<char> lid;
     std::vector<char> center;
     std::vector<Factories*> factories;
-    Bag* tileBag;
+    Bag tileBag;
     
     //Cant do 2D array with 2 different types
     std::vector<Player*> players;

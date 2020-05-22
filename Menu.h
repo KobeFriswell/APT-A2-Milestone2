@@ -8,6 +8,7 @@ public:
     Menu();
 
     int input();
+    void roundInput();
     void welcome();
     void mainMenu();
 
@@ -26,4 +27,17 @@ private:
     };
 
     Game* game;
+    std::string tiles = "RYBLU";
+
+    bool valid;
+    std::string action;
+    std::string fileName;
+    int factoryChoice;
+    char tile;
+    int patternLine;
+    
+    bool gameStatus;
+    int currentPlayer;
+    int numberPlayers;
 };
+    

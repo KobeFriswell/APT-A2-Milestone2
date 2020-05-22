@@ -8,14 +8,20 @@
 class Bag{
     public:
         Bag();
-        ~Bag();
+        //~Bag();
 
         void addTile(char tile);
-        void grabTile(int i);
+        char grabTile();
         void shuffleBag();
 
+        void toString();
+        std::string saveString();
+
     private:
-        const char gameTiles[5] = {'R','Y','B','L','U'};
+    
+        const char gameTiles[NUM_COLOUR_TILES] = {'R','Y','B','L','U'};
         LinkedList contents;
+
+        
 };
 #endif

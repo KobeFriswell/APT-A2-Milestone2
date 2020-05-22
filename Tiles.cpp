@@ -16,7 +16,7 @@ void Tiles::setColour(Colour c){
 Colour Tiles::getColour() {
     return this->colour;
 }
-
+    
 
 bool Tiles::SameColour(Tiles* tiles) {
     if(tiles->getColour() == this->colour)
