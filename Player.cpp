@@ -28,7 +28,11 @@ int Player::getPlayerScore(){
 int Player::getPlayerId(){
     return this -> id;
 }
-    
+
+void Player::setPlayerId(int setId){
+    this -> id = setId;
+}    
+
 //set set point as score 
 void Player::setPlayerScore(int point){
     if(point >=0) this-> point = score;

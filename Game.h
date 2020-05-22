@@ -17,6 +17,12 @@ class Game{
 public:
     Game(std::string player1, std::string player2);
 
+    Game(bool gameStatus, Bag bag, vector<char> boxLid, vector<char> center, Factories*[NUM_FACTORIES], int currentPlayer,
+            std::string player1, int player1Id, int player1Score,
+            char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[],
+            std::string player2, int player2Id, int player2Score,
+            char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[]);
+
     void addToPlayers(Player* player);
 
     void addToLid(char tile);

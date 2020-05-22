@@ -1,6 +1,9 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#define GRID_SIZE 5
+#define PENALTY_LENGTH 7
+
 #include "Tiles.h"
 
 #define FLOOR_LINE_SIZE 7
@@ -8,9 +11,10 @@
 class Board {
 public:
     Board();
+    Board(char rightGrid[GRID_SIZE][GRID_SIZE], char leftGrid[GRID_SIZE][GRID_SIZE], char penaltyPanel[PENALTY_LENGTH]);
 
     Board getBoard();
-
+    
     void setWallTile(int x, int y, char tile);
     std::string getWall();
 

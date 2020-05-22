@@ -5,7 +5,7 @@ string line;
 
 
 ReadWrite::ReadWrite(){
-    readFromFile();
+    //readFromFile();
 }
 
 bool ReadWrite::ignore(string s){
@@ -140,25 +140,27 @@ int ReadWrite::readFromFile(){
             getline(inFile,line);
         }
 
-        playerName[1] = line;
-        cout<<"Player name " << playerName[1] <<endl;
-
+        playerName[0] = line;
+        cout<<"Player name " << playerName[0] <<endl;
+        player[0].setPlayerName(playerName[0]);
              getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
 
-        playerId[1] = std::stoi(line);
-        cout<<"playerid " << playerId[1] <<endl;
+        playerId[0] = std::stoi(line);
+        cout<<"playerid " << playerId[0] <<endl;
+        player[0].setPlayerId(playerId[0]);
 
          getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        playerScore[1] = stoi(line);
-        cout<<"player Score " << playerScore[1] <<endl;
+        playerScore[0] = stoi(line);
+        cout<<"player Score " << playerScore[0] <<endl;
+        player[0].setScore(playerScore[0]);
 
          getline(inFile,line);
         while(ignore(line)){
@@ -226,8 +228,8 @@ int ReadWrite::readFromFile(){
             getline(inFile,line);
         }
 
-        playerName[2] = line;
-        cout<<"Player name " << playerName[2] <<endl;
+        playerName[1] = line;
+        cout<<"Player name " << playerName[1] <<endl;
 
              getline(inFile,line);
         while(ignore(line)){
@@ -235,16 +237,16 @@ int ReadWrite::readFromFile(){
         }
 
 
-        playerId[2] = std::stoi(line);
-        cout<<"playerid " << playerId[2] <<endl;
+        playerId[1] = std::stoi(line);
+        cout<<"playerid " << playerId[1] <<endl;
 
          getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
 
-        playerScore[2] = stoi(line);
-        cout<<"player Score " << playerScore[2] <<endl;
+        playerScore[1] = stoi(line);
+        cout<<"player Score " << playerScore[1] <<endl;
 
          getline(inFile,line);
         while(ignore(line)){
@@ -453,3 +455,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 // int main(){
 //     readFromFile();
 // }
+
+int loadPlayerScore(int player){
+    return playerScore[player-1];
+}

@@ -6,6 +6,20 @@ Board::Board(){
     //TODO
 }
 
+//overload
+Board::Board(char rightGrid[GRID_SIZE][GRID_SIZE], char leftGrid[GRID_SIZE][GRID_SIZE], char penaltyPanel[PENALTY_LENGTH]){
+    
+    for(int i=0; i < GRID_SIZE; i++){
+        for(int j=0; j < GRID_SIZE; j++){
+            this -> wall[i][j] = leftGrid[i][j];
+        }
+
+        for(int x=0; i < GRID_SIZE; x++){
+            this -> patternLine[i][x] = rightGrid[i][x];
+        }
+    }
+}
+
 void Board::setWallTile(int x, int y, char tile){
     wall[x][y] = tile;
  }

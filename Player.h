@@ -16,6 +16,7 @@ public:
     
     int getPlayerScore();  
     int getPlayerId();
+    void setPlayerId(int setId);
     void setPlayerScore(int point);
     
     void DisplayStatus();

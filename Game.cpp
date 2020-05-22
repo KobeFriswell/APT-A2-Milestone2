@@ -33,6 +33,47 @@ Game::Game(std::string player1, std::string player2){
     }
 }
 
+//overload
+Game::Game(bool gameStatus, Bag bag, vector<char> boxLid, vector<char> center, Factories*[NUM_FACTORIES], int currentPlayer,
+            std::string player1, int player1Id, int player1Score,
+            char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[PENALTY_LENGTH],
+            std::string player2, int player2Id, int player2Score,
+            char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[PENALTY_LENGTH])
+    {
+        players.clear();
+        boards.clear();
+
+        Player* p1 = new Player(player1);
+        p1 ->setPlayerId(player1Id);
+        p1 ->setPlayerScore(player1Score);              
+        Player* p2 = new Player(player2);
+        p2 ->setPlayerId(player2Id);
+        p2 ->setPlayerScore(player2Score);
+
+
+        players.push_back(p1);
+        players.push_back(p2);
+
+        Board* player1Board = new Board(p1RightGrid, p1LeftGrid, p1PenaltyPanel);
+        Board* player2Board = new Board(p2RightGrid, p2LeftGrid, p2PenaltyPanel);
+
+        
+
+        for (int i = 0; i<NUM_FACTORIES; i++){
+            Factories* factory = new Factories();
+            factories.push_back(factory);
+        }
+                
+
+
+
+                
+                Player* p2 = new Player(player2);
+                p2 -> setPlayerId(player2Id);
+                p2 -> setPlayerScore(player2Score);
+
+}
+
 //Add player to back of vector
 //Maybe create new board here also?
 void Game::addToPlayers(Player* player){
@@ -108,9 +149,10 @@ void Game::saveGame(std::string fileName){
     std::string p2LeftGrid = boards.at(1)->getPatternLines();
     std::string p2PenaltyPanel = boards.at(1)->getFloorLine();
 
-    // save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
-    //             p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
+    //  save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
+    //              p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
 }
+
 
 void Game::setGameStatus(bool status){
     gameStatus = status;
