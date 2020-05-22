@@ -9,10 +9,9 @@ LinkedList::LinkedList(){
 LinkedList::~LinkedList(){
     clear();
 }
-      
+
+//Return the int listSize as it keeps track of the size when adding and clearing
 int LinkedList::size(){
-    //Return the int listSize as it keeps track of the size 
-    //when adding and clearing
     return listSize;
 }
 
@@ -20,10 +19,11 @@ void LinkedList::clear(){
     Node* curr = head;
     Node* prev;
     head = nullptr;
+    last = nullptr;
 
     while (curr != nullptr){
         prev = curr;
-        curr = curr->next;
+        curr = curr->next; 
 
         delete prev;
     }
@@ -32,15 +32,17 @@ void LinkedList::clear(){
     listSize = 0;
 }
 
-char LinkedList::get(int i){
-    
+Node* LinkedList::getNode(int i){
     Node* current = head;
+    while (i != 0){
+            i--;
+            current = current->next;
+        }
+    return current;
+}
 
-    while (i !=0){
-        i--;
-        current = current->next;
-    }
-    return current->data;
+char LinkedList::getData(int i){
+    return getNode(i)->data;
 }
 
 void LinkedList::addFront(char data){
@@ -58,7 +60,29 @@ void LinkedList::addFront(char data){
 
 void LinkedList::addBack(char data){
     Node* newNode = new Node(data, nullptr);
-    last->next = newNode;
-    last = new Node(data, nullptr);
+
+    if (last == nullptr && head == nullptr){
+        last = newNode;
+        head = newNode;
+    } else{
+        last->next = newNode;
+        last = newNode;
+    }
     listSize++;
+}
+
+//Grabs First Tile as Bag is shuffled
+char LinkedList::grabTile(){
+    if (listSize>0){
+        Node* selectedTile = head;
+        char tileData = selectedTile->data;
+
+        head = selectedTile->next;
+
+        delete selectedTile;
+        return tileData;
+    } else{
+        return '-';
+    }
+    
 }

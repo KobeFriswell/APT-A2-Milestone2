@@ -1,8 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "Tiles.h"
-
 class Node {
 public:
 
@@ -10,7 +8,7 @@ public:
    Node(Node& other);
 
    char data;
-   Node*  next;
+   Node* next;
 };
 
 #endif // NODE_H

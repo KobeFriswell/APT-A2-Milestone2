@@ -1,16 +1,27 @@
+#ifndef FACTORIES_H
+#define FACTORIES_H
+
 #include <iostream>
 #include <string>
+
+#define FACTORY_SIZE 4
 
 class Factories{
     
     public:
 
     Factories();
-    int takeTile();
-    int NoOfFactories();
-    bool StoreColour();
-    void TileBag();
-    void BoxLid();
-    void removeTiles();
+    int takeTile(char tile);
+    bool storeTile(char tile);
+    void removeTiles(char tile);
+    std::string toString();
+    std::string saveString();
 
+    void clearFactory();
+
+    private:
+    
+    int numTiles;
+    char tiles[FACTORY_SIZE];
 };
+#endif
