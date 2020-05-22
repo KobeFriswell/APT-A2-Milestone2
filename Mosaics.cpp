@@ -195,13 +195,13 @@ bool Mosaics::PositionTiles(int row, int number, char tiles){
 void Mosaics::CheckTurn() {
         for (int x = 0; x < BOARD_SIZE; x++)
     {
-        bool fullrow = true;
+        bool completedrow = true;
         char tiles = EMPTY;
         for (int y = BOARD_SIZE-1; y >= 0; y--)
         {
             if(this->turnBoard[x][y].getColour() == EMPTY)
             {
-                fullrow = false;
+                completedrow = false;
             }
             else if(this->turnBoard[x][y].getColour() != ' ')
             {
@@ -209,7 +209,7 @@ void Mosaics::CheckTurn() {
             }
         }
         
-        if(fullrow == true)
+        if(completedrow == true)
         {
             for (int y = BOARD_SIZE-1; y >= 0; y--)
             {
@@ -239,18 +239,18 @@ bool Mosaics::winCheck() {
 
         for(int x =0; x < BOARD_SIZE; x++)
     {
-        bool fullrow = true;
+        bool completedrow = true;
         
         for(int y =0; y < BOARD_SIZE; y++)
         {
             if(this->pointBoard[x][y].getColour() == tolower(this->pointBoard[x][y].getColour()))
             {
-                fullrow = false;
+                completedrow = false;
             }
            
         }
         
-        if(fullrow)
+        if(completedrow)
         {
             return true;
         }
