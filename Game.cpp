@@ -63,14 +63,6 @@ Game::Game(bool gameStatus, Bag bag, vector<char> boxLid, vector<char> center, F
             Factories* factory = new Factories();
             factories.push_back(factory);
         }
-                
-
-
-
-                
-                Player* p2 = new Player(player2);
-                p2 -> setPlayerId(player2Id);
-                p2 -> setPlayerScore(player2Score);
 
 }
 
