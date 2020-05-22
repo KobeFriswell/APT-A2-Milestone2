@@ -13,11 +13,14 @@ public:
 
     void setWallTile(int x, int y, char tile);
     std::string getWall();
+    void addToWall(int line, char tile);
 
     bool setPatternTile(int line, char tile, int numTiles);
     std::string getPatternLines();
     int getFreePatterLine(int line);
     char patternLineContains(int line);
+    void checkPatternLines();
+    void clearPatternLine(int line);
 
     std::string getFloorLine();
 

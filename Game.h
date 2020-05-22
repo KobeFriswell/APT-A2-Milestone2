@@ -26,6 +26,7 @@ public:
     std::string centerToString();
 
     bool playerTurn(int factoryChoice, char tile, int patternLine);
+    void finishRound();
 
     void addToTileBag(char tile);
 

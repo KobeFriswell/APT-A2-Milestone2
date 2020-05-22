@@ -14,6 +14,7 @@ Game::Game(std::string player1, std::string player2){
 
     players.push_back(p2);
     boards.push_back(player2Board);
+    numPlayers = 2;
 
     //Create 5 Factories
     for (int i = 0; i<NUM_FACTORIES; i++){
@@ -121,5 +122,11 @@ void Game::setCurrentPlayer(int current){
 }
 
 void Game::setNumberPlayers(){
-    numberPlayers = getNumPlayers();
+    numberPlayers = players.size();
+}
+
+void Game::finishRound(){
+    for (int i = 0; i<numPlayers; i++){
+        boards.at(i)->checkPatternLines();
+    }
 }

@@ -113,4 +113,36 @@ void Board::addFloorLine(char tile){
     }
 }
 
-//Checks PatternLines for Full then move to wall
+//Checks PatternLines for full then move to wall
+void Board::checkPatternLines(){
+    char wallTile;
+    for (int line = 0; line<5; line++){
+        bool full = true;
+        for (int tile = 0; tile<5; tile++){
+            if (patternLine[line][tile] == '-'){
+                full = false;
+            }
+        }
+        if (full){
+            wallTile = patternLineContains(line);
+            clearPatternLine(line);
+            addToWall(line, wallTile);
+        }
+    }
+}
+
+//Writes '-' for whole line
+void Board::clearPatternLine(int line){
+    for (int index = 5; index>(5-line); index--){
+        patternLine[line][index] = '-';
+    }
+}
+
+//Adds character to wall in its correct position
+void Board::addToWall(int line, char tile){
+    for (int column = 0; column<5; column++){
+        if (wallTemplate[line][column] == tile){
+            wall[line][column] = tile;
+        }
+    }
+}
