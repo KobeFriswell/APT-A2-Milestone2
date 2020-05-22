@@ -25,6 +25,8 @@ public:
     void addToCenter(char tile);
     std::string centerToString();
 
+    void playerTurn(int factoryChoice, char tile, int patternLine);
+
     void addToTileBag(char tile);
 
     int getNumPlayers();
@@ -32,7 +34,11 @@ public:
 
     Factories* getFactory(int index);
 
-    void saveGame(std::string fileName, bool gameStatus, int currentPlayer, int numberPlayers);
+    void saveGame(std::string fileName);
+
+    void setGameStatus(bool status);
+    void setCurrentPlayer(int current);
+    void setNumberPlayers();
 
 private:
     std::vector<char> lid;
@@ -45,6 +51,10 @@ private:
     std::vector<Board*> boards;
 
     int numPlayers;
+
+    bool gameStatus;
+    int currentPlayer;
+    int numberPlayers;
 };
 
 #endif

@@ -10,24 +10,68 @@ void Board::setWallTile(int x, int y, char tile){
     wall[x][y] = tile;
  }
     
-char* Board::getWall(){
-    return *wall;
+std::string Board::getWall(){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        for (int x = 0; x<5; x++){
+            toString = toString + wall[i][x];
+        }
+    }
+    return toString;
 }
 
-void Board::setPatternTile(int x,int y, char tile){
-    patternLine[x][y] = tile;
+bool Board::setPatternTile(int line, char tile, int numTiles){
+    //Checks if enough free spots
+    if (getFreePatterLine(line) < numTiles || (patternLineContains(line) != '0' || patternLineContains(line) != tile)){
+        return false;
+    } else{
+        for (int i = 5; i>(5-numTiles); i--){
+            if (patternLine[line][i] == '-'){
+                patternLine[line][i] = tile;
+            }
+        }
+        return true;
+    }
+}
+
+//Get free spaces in pattern line
+int Board::getFreePatterLine(int line){
+    int count = 0;
+    for (int i = 0; i<5; i++){
+        if (patternLine[line][i] == '-'){
+            count++;
+        }
+    }
+    return count;
+}
+
+//Returns the character stored in the line already
+char Board::patternLineContains(int line){
+    char tile = '0';
+    for (int i = 0; i<5; i++){
+        if (patternLine[line][i] != '-' || patternLine[line][i] != '.'){
+            tile = patternLine[line][i];
+        }
+    }
+    return tile;
 }
     
-char* Board::getPatternLine(){
-    return *patternLine;
+std::string Board::getPatternLine(){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        for (int x = 0; x<5; x++){
+            toString = toString + patternLine[i][x];
+        }
+    }
+    return toString;
 }
 
-//
-void Board::dropTile(char tile){
+//Returns the tile being dropped
+char Board::dropTile(char tile){
     //TODO
 }
 
-char* Board::getFloorLine(){
+std::string Board::getFloorLine(){
     return floorLine;
 }
 

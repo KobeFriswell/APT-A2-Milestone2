@@ -3,8 +3,8 @@
 //Player class
 
 Player::Player(std::string username){
-    this ->username = username;
-    this ->score = 0;
+    this->username = username;
+    this->score = 0;
 }
 
 //Player username and point is blanked

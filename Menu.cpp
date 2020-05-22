@@ -63,7 +63,7 @@ void Menu::roundInput(){
         } else if (action == "save"){
             std::cout << "\nEnter File Name: \n>";
             std::cin >> fileName;
-            game->saveGame(fileName, gameStatus, currentPlayer, numberPlayers);
+            game->saveGame(fileName);
             valid = true;
         }
     }
@@ -140,8 +140,9 @@ void Menu::newGame(){
 
     std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
     std::cout << "Let's Play!" << std::endl;
-    gameStatus = true;
+    game->setGameStatus(true);
     
+    game->setNumberPlayers();
     startRound();
 }
 
@@ -159,7 +160,7 @@ void Menu::quit(){
 void Menu::startRound(){
     std::cout << "=== Start Round ===" << std::endl;
     for (int i = 0; i<game->getNumPlayers(); i++){
-        currentPlayer = i+1;
+        game->setCurrentPlayer(i+1);
         std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
         std::cout << "Factories: " << std::endl;
         std::cout << "0: " << game->centerToString() << std::endl;
@@ -174,7 +175,9 @@ void Menu::startRound(){
         std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
         //Call Mosaic Print Here
 
-        roundInput();           
+        roundInput();   
+        //Move tiles from factory to patternLine
+        game->playerTurn(factoryChoice, tile, patternLine);
     }
     std::cout << "=== End Round ===" << std::endl;
 }
