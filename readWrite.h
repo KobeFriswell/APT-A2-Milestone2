@@ -39,9 +39,8 @@ class ReadWrite{
         ReadWrite();
         void saveToFile(string fileName, int gameStatus, 
                 Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> factories, int currentPlayer, int numPlayers, 
-                Player player1, char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[PENALTY_LENGTH],
-                Player player2, char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[PENALTY_LENGTH]
-                );
+                Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
+                Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel);
     private:
 
 

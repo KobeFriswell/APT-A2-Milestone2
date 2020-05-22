@@ -328,10 +328,10 @@ int ReadWrite::readFromFile(){
     - penaltyPanel/floorline
       
     */
-void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> 
-                factories, int currentPlayer, int numPlayers, 
-                Player player1, char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[PENALTY_LENGTH],
-                Player player2, char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[PENALTY_LENGTH]
+void ReadWrite::saveToFile(string fileName, int gameStatus, 
+                Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> factories, int currentPlayer, int numPlayers, 
+                Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
+                Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel
                 ){
 
     //open file stream to the selected txtfile
@@ -396,28 +396,31 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
     //5x5 wall tiles
     newSaveFile << "Right Wall Tile\n";
-    for (int i = 0; i < GRID_SIZE; i++){
-        for (int j = 0; j<GRID_SIZE; j++){
-            newSaveFile << p1RightGrid[i][j];
-        }
-        newSaveFile << "\n";
-    }
+    newSaveFile << p1RightGrid;
+    // for (int i = 0; i < GRID_SIZE; i++){
+    //     for (int j = 0; j<GRID_SIZE; j++){
+    //         newSaveFile << p1RightGrid[i][j];
+    //     }
+    //     newSaveFile << "\n";
+    // }
     newSaveFile << "\n\n";
 
     newSaveFile << "Left Wall Triangle\n";
-    for (int i = 0; i < GRID_SIZE; i++){
-        for (int j = 0; j<=i; j++){
-            newSaveFile << p1LeftGrid[i][j];
-        }
-        newSaveFile << "\n";
-    }
+    newSaveFile << p1RightGrid;
+    // for (int i = 0; i < GRID_SIZE; i++){
+    //     for (int j = 0; j<=i; j++){
+    //         newSaveFile << p1LeftGrid[i][j];
+    //     }
+    //     newSaveFile << "\n";
+    // }
     newSaveFile << "\n\n";
 
 
     newSaveFile << "Penalty Panel\n";
-    for (int i = 0; i < PENALTY_LENGTH; i++){
-        newSaveFile << p1PenaltyPanel[i];
-    }
+    newSaveFile << p1PenaltyPanel;
+    // for (int i = 0; i < PENALTY_LENGTH; i++){
+    //     newSaveFile << p1PenaltyPanel[i];
+    // }
     newSaveFile << "\n\n";
 
 // ---------PLAYER 2----------------
@@ -428,28 +431,31 @@ void ReadWrite::saveToFile(string fileName, int gameStatus, Bag bag, vector<char
 
     //5x5 wall tiles
     newSaveFile << "Right Wall Tile\n";
-    for (int i = 0; i < GRID_SIZE; i++){
-        for (int j = 0; j<GRID_SIZE; j++){
-            newSaveFile << p2RightGrid[i][j];
-        }
-        newSaveFile << "\n";
-    }
+    newSaveFile << p2RightGrid;
+    // for (int i = 0; i < GRID_SIZE; i++){
+    //     for (int j = 0; j<GRID_SIZE; j++){
+    //         newSaveFile << p2RightGrid[i][j];
+    //     }
+    //     newSaveFile << "\n";
+    // }
     newSaveFile << "\n\n";
 
     newSaveFile << "Left Wall Triangle\n";
-    for (int i = 0; i < GRID_SIZE; i++){
-        for (int j = 0; j<=i; j++){
-            newSaveFile << p2LeftGrid[i][j];
-        }
-        newSaveFile << "\n";
-    }
+    newSaveFile << p2LeftGrid;
+    // for (int i = 0; i < GRID_SIZE; i++){
+    //     for (int j = 0; j<=i; j++){
+    //         newSaveFile << p2LeftGrid[i][j];
+    //     }
+    //     newSaveFile << "\n";
+    // }
     newSaveFile << "\n\n";
 
 
     newSaveFile << "Penalty Panel\n";
-    for (int i = 0; i < PENALTY_LENGTH; i++){
-        newSaveFile << p2PenaltyPanel[i];
-    }
+    newSaveFile << p2PenaltyPanel;
+    // for (int i = 0; i < PENALTY_LENGTH; i++){
+    //     newSaveFile << p2PenaltyPanel[i];
+    // }
     newSaveFile << "\n\n";
 
     newSaveFile.close();

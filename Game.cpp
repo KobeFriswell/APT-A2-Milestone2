@@ -142,8 +142,8 @@ void Game::saveGame(std::string fileName){
     std::string p2LeftGrid = boards.at(1)->getPatternLines();
     std::string p2PenaltyPanel = boards.at(1)->getFloorLine();
 
-    //  save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
-    //              p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p2LeftGrid, p2PenaltyPanel);
+    save.saveToFile(fileName, gameStatus, tileBag, lid, center, factories, currentPlayer, numberPlayers, player1,
+                  p1RightGrid, p1LeftGrid, p1PenaltyPanel, player2, p1RightGrid, p2LeftGrid, p2PenaltyPanel);
 }
 
 
