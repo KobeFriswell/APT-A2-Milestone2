@@ -1,6 +1,7 @@
 //Menu Class
 #include "Menu.h"
 #include "Game.h"
+#include "readWrite.h"
 
 Menu::Menu(){
     welcome();
@@ -152,6 +153,43 @@ void Menu::newGame(){
 //Function to load game
 void Menu::loadGame(){
     std::cout << "Load Game!" << std::endl;
+
+    // Game(bool gameStatus, Bag bag, vector<char> boxLid, Factories*[NUM_FACTORIES], int currentPlayer,
+    //         std::string player1, int player1Id, int player1Score,
+    //         char p1RightGrid[GRID_SIZE][GRID_SIZE], char p1LeftGrid[GRID_SIZE][GRID_SIZE], char p1PenaltyPanel[PENALTY_LENGTH],
+    //         std::string player2, int player2Id, int player2Score,
+    //         char p2RightGrid[GRID_SIZE][GRID_SIZE], char p2LeftGrid[GRID_SIZE][GRID_SIZE], char p2PenaltyPanel[PENALTY_LENGTH])
+    ReadWrite* load = new ReadWrite();
+    
+
+    char p1LGrid[GRID_SIZE][GRID_SIZE];
+    char p1RGrid[GRID_SIZE][GRID_SIZE];
+    char p2LGrid[GRID_SIZE][GRID_SIZE];
+    char p2RGrid[GRID_SIZE][GRID_SIZE];
+    char p1Pen[PENALTY_LENGTH];
+    char p2Pen[PENALTY_LENGTH];
+
+
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
+            p1LGrid[i][j] = load -> loadPlayerLeftGrid(1,i,j);
+            p2LGrid[i][j] = load -> loadPlayerLeftGrid(2,i,j);
+
+            p1RGrid[i][j] = load -> loadPlayerRightGrid(1,i,j);
+            p2RGrid[i][j] = load -> loadPlayerRightGrid(2,i,j);
+        }
+        p1Pen[i] = load ->loadPlayerPenaltyPanel(1, i);
+        p2Pen[i] = load ->loadPlayerPenaltyPanel(2, i);
+
+    }
+
+    game = new Game(true, 1, 
+    load->loadPlayerName(1), 1, load->loadPlayerScore(1),
+    p1RGrid, p1LGrid, p1Pen,
+    load->loadPlayerName(2), 2, load->loadPlayerScore(2),
+    p2RGrid, p2LGrid, p2Pen);
+
+    startRound();
 }
 
 //Function to quit game

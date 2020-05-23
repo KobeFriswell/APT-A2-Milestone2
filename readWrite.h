@@ -16,7 +16,7 @@
 #include "Bag.h"
 
 #define GRID_SIZE 5
-#define NUM_FACTORIES 5
+#define NUM_FACTORIES 6
 #define PENALTY_LENGTH 7
 #define NUM_PLAYERS 2
 
@@ -39,12 +39,21 @@ class ReadWrite{
                 Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
                 Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel
                 );
+
+        int loadPlayerScore(int playerId);
+        string loadPlayerName(int playerId);
+        int loadPlayerId(int playerId);
+
+        char loadPlayerRightGrid(int playerId, int x, int y);
+        char loadPlayerLeftGrid(int playerId, int x, int y);
+        char loadPlayerPenaltyPanel(int PlayerId, int i);
+
+        Bag loadBag();
+        
     private:
 
 
     //METHODS
-        
-        void skip(ifstream inFile, string line);
         bool ignore(string s);
         int readFromFile();
         
