@@ -30,6 +30,7 @@ public:
 
     void addToCenter(char tile);
     std::string centerToString();
+    int takeCenterTile(char tile);
 
     bool playerTurn(int factoryChoice, char tile, int patternLine);
     //void finishRound();

@@ -122,16 +122,42 @@ std::string Game::centerToString(){
 
 //Takes player turn from menu input and returns if valid
 bool Game::playerTurn(int factoryChoice, char tile, int patternLine){
-    Factories* factory = factories.at(factoryChoice-1);
-    int numTiles = factory->takeTile(tile);
-    std::string remainingTiles = factory->toString();
-    for (int i = 0; i<8; i++){
-        if (remainingTiles[i] != '\0' && remainingTiles[i] != '-' && remainingTiles[i] != ' ' && remainingTiles[i] != '0'){
-            addToCenter(remainingTiles[i]);
+    int numTiles = 0;
+    if (factoryChoice == 0){
+        return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, takeCenterTile(tile));
+    } else{
+        Factories* factory = factories.at(factoryChoice-1);
+        numTiles = factory->takeTile(tile);
+        std::string remainingTiles = factory->toString();
+        for (int i = 0; i<8; i++){
+            if (remainingTiles[i] != '\0' && remainingTiles[i] != '-' && remainingTiles[i] != ' ' && remainingTiles[i] != '0'){
+                addToCenter(remainingTiles[i]);
+            }
         }
-    }
+    }   
+    
     //Add number of Tiles to the chosen patternLine of a players board
     return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, numTiles);
+}
+
+//Take tile from the center
+int Game::takeCenterTile(char tile){
+    int numTiles = 0;
+    bool deleting = true;
+    int index = 0;
+    while (deleting){
+        if(center.at(index) == tile){
+            numTiles++;
+            center.erase(center.begin() + index);
+        } else{
+            index++;
+        }
+        int centerSize = center.size();
+        if (index == centerSize){
+            deleting = false;
+        }
+    }
+    return numTiles;
 }
 
 //Uses ReadWrite to write save file
