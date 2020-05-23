@@ -4,6 +4,10 @@
 #include <string>
 #include <iostream>
 
+#define tempLineX 0
+#define tempLineY 0
+#include "Player.h"
+
 #define GRID_SIZE 5
 #define PENALTY_LENGTH 7
 
@@ -81,6 +85,14 @@ private:
     const int weightings[7] = {-1,-1,-2,-2,-2,-3,-3};
     char floorLine[FLOOR_LINE_SIZE] = {'-'};
     
+    //tracks playerscore
+    Player* player;
+    //int scorepoints
+    std::vector<int> checkX;
+    std::vector<int> checkY;
+    int brokenpoints = 0;
+    Board* board;
+
     //int scoreTrack;
     std::vector<int> numToLid;
     std::vector<char> tileToLid;
