@@ -12,11 +12,12 @@ RYBLURYLUUULBYRRBLULBBBLYRLUYR$
 RYBLUYBLURYLUUULBYR$
 
 #Factories
-BLURY$
-BBBBB$
-RRRRR$
-LUURR$
-RYYYY$
+FBBBYY$
+BLUR$
+BBBB$
+RRRR$
+LURR$
+YYYY$
 
 #Current Player
 1
@@ -37,19 +38,19 @@ John Doe
 
 0
 
-.....
-.....
-.....
-.....
-.....
+-----
+-----
+-----
+-----
+-----
 
-.
-..
-...
-....
-.....
+-
+--
+---
+----
+-----
 
-.....
+-------
 
 #Player2
 Jason Borne
@@ -57,16 +58,16 @@ Jason Borne
 
 0
 
-.....
-.....
-.....
-.....
-.....
+-----
+-----
+-----
+-----
+-----
 
-.
-..
-...
-....
-.....
+-
+--
+---
+----
+-----
 
-.....
+-------
