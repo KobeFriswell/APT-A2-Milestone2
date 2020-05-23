@@ -54,7 +54,6 @@ void Menu::roundInput(){
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
                 } else {
-
                     //Passed Validation - use factorieChoice, tile and patternLine
                     turn = true;
                     valid = true;

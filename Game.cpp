@@ -115,7 +115,7 @@ std::string Game::centerToString(){
     int centerSize = center.size();
     std::string toString;
     for (int i = 0; i<centerSize; i++){
-        toString = toString + center.at(i) + "  ";
+        toString = toString + center.at(i) + " ";
     }
     return toString;
 }
@@ -124,7 +124,12 @@ std::string Game::centerToString(){
 bool Game::playerTurn(int factoryChoice, char tile, int patternLine){
     Factories* factory = factories.at(factoryChoice-1);
     int numTiles = factory->takeTile(tile);
-
+    std::string remainingTiles = factory->toString();
+    for (int i = 0; i<8; i++){
+        if (remainingTiles[i] != '\0' && remainingTiles[i] != '-' && remainingTiles[i] != ' ' && remainingTiles[i] != '0'){
+            addToCenter(remainingTiles[i]);
+        }
+    }
     //Add number of Tiles to the chosen patternLine of a players board
     return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, numTiles);
 }
@@ -176,7 +181,6 @@ void Game::finishRound(){
                 lid.push_back(tileToLid.at(i));
             }
         }
-        std::cout << "LID SIZE: " << lid.size() << std::endl;
     }
 }
 
