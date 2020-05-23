@@ -10,13 +10,10 @@
 #include <vector>
 
 #include "LinkedList.h"
-//#include "LinkedList.cpp"
 #include "Node.h"
-//#include "Node.cpp"
 #include "Player.h"
 #include "Factories.h"
 #include "Bag.h"
-//#include "Player.cpp"
 
 #define GRID_SIZE 5
 #define NUM_FACTORIES 5
@@ -38,7 +35,7 @@ class ReadWrite{
     public:
         ReadWrite();
         void saveToFile(string fileName, int gameStatus, 
-                Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> factories, int currentPlayer, int numPlayers, 
+                Bag bag, vector<char> boxLid, vector<Factories*> factories, int currentPlayer, int numPlayers, 
                 Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
                 Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel
                 );
@@ -62,7 +59,6 @@ class ReadWrite{
         bool gameStatus;
         LinkedList bag;
         vector<char> boxlid;
-        vector<int> center;
         vector<char> factory[NUM_FACTORIES];
         int currentPlayer;
         int numberPlayers;
@@ -83,32 +79,4 @@ class ReadWrite{
 
 };
 
-#endif 
-
-// int hour,minute,second,day,month,year;
-
-// string dateTime;
-// bool gameStatus;
-// char c;
-
-// vector<int> center;
-// LinkedList bag;
-// LinkedList boxlid;
-// vector<char> factory[NUM_FACTORIES];
-
-// int currentPlayer;
-// int numberPlayers;
-
-// string playerName[NUM_PLAYERS];
-// int playerId[NUM_PLAYERS];
-// int playerScore[NUM_PLAYERS];
-
-// char p1RightGrid[GRID_SIZE][GRID_SIZE];
-// char p1LeftGrid[GRID_SIZE][GRID_SIZE];
-// char p2RightGrid[GRID_SIZE][GRID_SIZE];
-// char p2LeftGrid[GRID_SIZE][GRID_SIZE];
-
-// char p1PenaltyPanel[PENALTY_LENGTH];
-// char p2PenaltyPanel[PENALTY_LENGTH];
-
-// Player* players[NUM_PLAYERS];
+#endif

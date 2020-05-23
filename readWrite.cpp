@@ -64,7 +64,7 @@ int ReadWrite::readFromFile(){
         while(ignore(line)){
             getline(inFile,line);
         }
-        //TODO vector?
+
         for (unsigned i=0; i<line.length()-1; ++i){
             c = line.at(i);
             boxlid.push_back(c);
@@ -72,27 +72,14 @@ int ReadWrite::readFromFile(){
 
         cout<<"Box lid " + line<<endl;
 
-        // CENTER
-         getline(inFile,line);
-        while(ignore(line)){
-            getline(inFile,line);
-        }
-        cout<<"center: ";
-        for (unsigned i=0; i<line.length()-1; i++){
-            c = line.at(i);
-            cout<<c;
-            center.push_back(c);
-        }
-        cout<<endl;
-
 
 // FACTORIES
         getline(inFile,line);
         while(ignore(line)){
             getline(inFile,line);
         }
-        //for the 5 factories
-        for(int i=0;i<GRID_SIZE;i++){
+        //for the center and 5 factories
+        for(int i=0;i<NUM_FACTORIES;i++){
             //print the content of the factory as a string
             cout<< i <<"factory " + line<<endl;
 
@@ -106,7 +93,7 @@ int ReadWrite::readFromFile(){
         }
 
 // CURRENT PLAYER
-       //getline(inFile,line);
+
         while(ignore(line)){
             getline(inFile,line);
         } 
@@ -329,7 +316,7 @@ int ReadWrite::readFromFile(){
       
     */
 void ReadWrite::saveToFile(string fileName, int gameStatus, 
-                Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> factories, int currentPlayer, int numPlayers, 
+                Bag bag, vector<char> boxLid, vector<Factories*> factories, int currentPlayer, int numPlayers, 
                 Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
                 Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel
                 ){
@@ -363,12 +350,6 @@ void ReadWrite::saveToFile(string fileName, int gameStatus,
     }
     newSaveFile << "$\n\n";
 
-    //Center
-    newSaveFile << "Center\n";
-    for(unsigned i = 0; i<center.size(); i++){
-        newSaveFile << center.at(i);
-    }
-    newSaveFile << "$\n\n";
 
     //5 Factories
     for(unsigned i = 0; i< NUM_FACTORIES; i++){
@@ -467,5 +448,7 @@ void ReadWrite::saveToFile(string fileName, int gameStatus,
 // }
 
 // int loadPlayerScore(int playerId){
-//     return playerScore[playerId-1];
+//     int i = playerScore[playerId-1];
+//     return 
+
 // }
