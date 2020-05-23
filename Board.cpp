@@ -78,7 +78,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
 int Board::getFreePatterLine(int line){
     int count = 0;
     for (int i = 0; i<5; i++){
-        if (patternLine[line][i] == '-'){
+        if (patternLine[line][i] == '.'){
             count++;
         }
     }

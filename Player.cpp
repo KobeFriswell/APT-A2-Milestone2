@@ -1,7 +1,7 @@
 #include "Player.h"
 
 //Player class
-
+//Player info starts with blanked / 0
 Player::Player(std::string username){
     this ->username = username;
     this -> id = id;
@@ -20,20 +20,20 @@ std::string Player::getUsername(){
     return this -> username;
 }
     
-    //returns players point
+//returns players point
 int Player::getPlayerScore(){
     return this->point;
 } 
-
+//returns player ID
 int Player::getPlayerId(){
     return this -> id;
 }
-
+    //set playerID
 void Player::setPlayerId(int setId){
     this -> id = setId;
 }    
 
-//set set point as score 
+//set point as score 
 void Player::setPlayerScore(int point){
     if(point >=0) this-> point = score;
     else this-> point = 0;

@@ -105,7 +105,12 @@ void Menu::mainMenu(){
             std::cout << "invalid Command, Please Enter A Correct Value." << std::endl;
             std::cin.clear();
             std::cin.ignore(1000, '\n');
-        }
+        } 
+        //end game if EOF command is entered
+        if (std::cin.eof()){
+            std::cout << "Goodbye." <<std::endl;
+            std::exit(EXIT_SUCCESS);
+            }
     }
 }
 
@@ -165,6 +170,7 @@ void Menu::startRound(){
             std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
             std::cout << "Factories: " << std::endl;
             std::cout << "0: " << game->centerToString() << std::endl;
+            //Prints factories with randomized tiles
             for (int x = 0; x<NUM_FACTORIES; x++){
                 Factories* factory = game->getFactory(x);
                 std::cout << x+1 << ": ";
@@ -175,7 +181,8 @@ void Menu::startRound(){
 
             std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
             std::cout << game->getBoardString(i) << std::endl;
-
+            
+            //display options for user to input (factoryNo (0-5), tile (colour) & patternline (1-5) )
             bool validTurn = false;
             while (!validTurn){
                 roundInput(); 
