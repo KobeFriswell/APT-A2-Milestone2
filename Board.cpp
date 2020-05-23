@@ -151,8 +151,10 @@ void Board::checkPatternLines(){
 
 //Writes '-' for whole line
 void Board::clearPatternLine(int line){
-    for (int index = 5; index>(5-line); index--){
-        patternLine[line][index] = '-';
+    for (int index = 0; index<5; index++){
+        if (patternLine[line][index] != '.'){
+            patternLine[line][index] = '-';
+        }
     }
 }
 
@@ -165,10 +167,45 @@ void Board::addToWall(int line, char tile){
     }
 }
 
+//Get number of tiles needed to add to lid
 std::vector<int> Board::getNumToLid(){
     return numToLid;
 }
 
+//Get tiles needed to add to lid
 std::vector<char> Board::getTileToLid(){
     return tileToLid;
+}
+
+//Returns printable format of board
+std::string Board::toStringBoard(){
+    std::string toString;
+    for (int row = 0; row<5; row++){
+        toString = toString + std::to_string(row+1) + ": " + stringPatternLine(row) + " || " + getWallLine(row) + "\n";
+    }
+    toString = toString + "Broken: " + getFloorLine();
+    return toString;
+}
+
+//Returns given line in string format
+std::string Board::stringPatternLine(int line){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        if (patternLine[line][i] == '.'){
+            toString = toString + "  ";
+        }
+        else{
+           toString = toString + patternLine[line][i] + " "; 
+        }
+    }
+    return toString;
+}
+
+//Returns given wall line in string format
+std::string Board::getWallLine(int line){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        toString = toString + wall[line][i] + " "; 
+    }
+    return toString;
 }

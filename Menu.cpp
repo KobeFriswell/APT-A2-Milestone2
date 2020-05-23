@@ -174,7 +174,7 @@ void Menu::startRound(){
             std::cout << std::endl;
 
             std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
-            //Call Mosaic Print Here
+            std::cout << game->getBoardString(i) << std::endl;
 
             bool validTurn = false;
             while (!validTurn){

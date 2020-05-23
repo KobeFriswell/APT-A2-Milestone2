@@ -20,6 +20,9 @@ public:
     
     void setWallTile(int x, int y, char tile);
     std::string getWall();
+    std::string toStringBoard();
+    std::string stringPatternLine(int line);
+    std::string getWallLine(int line);
     void addToWall(int line, char tile);
 
     bool setPatternTile(int line, char tile, int numTiles);

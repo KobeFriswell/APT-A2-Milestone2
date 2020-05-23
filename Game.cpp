@@ -55,10 +55,8 @@ Game::Game(bool gameStatus, Bag bag, vector<char> boxLid, vector<char> center, F
         players.push_back(p1);
         players.push_back(p2);
 
-        Board* player1Board = new Board(p1RightGrid, p1LeftGrid, p1PenaltyPanel);
-        Board* player2Board = new Board(p2RightGrid, p2LeftGrid, p2PenaltyPanel);
-
-        
+        //Board* player1Board = new Board(p1RightGrid, p1LeftGrid, p1PenaltyPanel);
+        //Board* player2Board = new Board(p2RightGrid, p2LeftGrid, p2PenaltyPanel);
 
         for (int i = 0; i<NUM_FACTORIES; i++){
             Factories* factory = new Factories();
@@ -180,4 +178,8 @@ void Game::finishRound(){
         }
         std::cout << "LID SIZE: " << lid.size() << std::endl;
     }
+}
+
+std::string Game::getBoardString(int playerIndex){
+    return boards.at(playerIndex)->toStringBoard();
 }
