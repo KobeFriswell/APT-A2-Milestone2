@@ -5,7 +5,7 @@ string line;
 
 
 ReadWrite::ReadWrite(){
-    //readFromFile();
+    readFromFile();
 }
 
 bool ReadWrite::ignore(string s){
@@ -447,8 +447,48 @@ void ReadWrite::saveToFile(string fileName, int gameStatus,
 //     readFromFile();
 // }
 
-// int loadPlayerScore(int playerId){
-//     int i = playerScore[playerId-1];
-//     return 
+int ReadWrite::loadPlayerScore(int playerId){
+    return playerScore[playerId-1];
+}
 
+string ReadWrite::loadPlayerName(int playerId){
+    return playerName[playerId-1];
+}
+
+//Should return a 2D array of the players right grid
+char ReadWrite::loadPlayerRightGrid(int playerId, int x, int y){
+    if (playerId == 1){
+        return p1RightGrid[x][y];
+    }
+    if(playerId ==2){
+        return p2RightGrid[x][y];
+    }
+}
+
+//Should return a 2D array of the players left grid
+char ReadWrite::loadPlayerLeftGrid(int playerId, int x, int y){
+    if (playerId == 1){
+        return p1LeftGrid[x][y];
+    }
+    if(playerId ==2){
+        return p2LeftGrid[x][y];
+    }
+}
+
+//Should return an array of the player floorline
+char ReadWrite::loadPlayerPenaltyPanel(int playerId, int i){
+
+    if (playerId ==1){
+        return p1PenaltyPanel[i];
+    }
+    if (playerId ==2){
+        return p2PenaltyPanel[i];
+    }
+
+}
+
+// Bag ReadWrite::loadBag(){
+//     return bag;
 // }
+
+
