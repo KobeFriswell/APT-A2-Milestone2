@@ -189,8 +189,6 @@ int Board::endGameScoreTally(){
 int Board::roundTally(){
     int roundScore = 0;
 
-<<<<<<< HEAD
-=======
         bool horizontal = true;     //check if horizontal
         bool vertical = true;
         bool horizontalplus = false;
@@ -260,7 +258,6 @@ int Board::roundTally(){
        }
        
     }
->>>>>>> origin/comments
     //if tile placed has no adjacent tile then score +1 and return
     // if(noAdjacentTile(x, y)){
     //     //Score +1
