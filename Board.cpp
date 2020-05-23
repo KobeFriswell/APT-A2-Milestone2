@@ -20,10 +20,12 @@ Board::Board(char rightGrid[GRID_SIZE][GRID_SIZE], char leftGrid[GRID_SIZE][GRID
     }
 }
 
+//Sets tile on wall given x and y
 void Board::setWallTile(int x, int y, char tile){
     wall[x][y] = tile;
  }
-    
+
+//Returns a string format of the wall
 std::string Board::getWall(){
     std::string toString;
     for (int i = 0; i<5; i++){
@@ -34,6 +36,7 @@ std::string Board::getWall(){
     return toString;
 }
 
+//Adds tile(s) to specific pattern line
 bool Board::setPatternTile(int line, char tile, int numTiles){
     //Checks if enough free spots
     int lineChoice = line - 1;
@@ -44,8 +47,9 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
         std::cout << "\nError: Pattern Line already contains different tile\n" << std::endl;
         return false;
     } else{
-        //Drops tiles to floorline
+        //If too many tiles, drops tiles to floorline
         if (getFreePatterLine(lineChoice) < numTiles){
+            //Number of extra tiles to go to floor line
             int extraTiles = numTiles-getFreePatterLine(lineChoice);
             numTiles = numTiles-extraTiles;
             int index = 0;
@@ -81,7 +85,7 @@ int Board::getFreePatterLine(int line){
     return count;
 }
 
-//Returns the character stored in the line already
+//Returns the character stored in the line already, if nothing return '0' char
 char Board::patternLineContains(int line){
     char tile = '0';
     for (int i = 0; i<5; i++){
@@ -92,7 +96,8 @@ char Board::patternLineContains(int line){
     }
     return tile;
 }
-    
+
+//Returns a string format of all pattern lines 
 std::string Board::getPatternLines(){
     std::string toString;
     for (int i = 0; i<5; i++){
@@ -103,12 +108,7 @@ std::string Board::getPatternLines(){
     return toString;
 }
 
-//Returns the tile being dropped
-char Board::dropTile(char tile){
-    //TODO
-    return '0';
-}
-
+//Returns a string format of the floor line
 std::string Board::getFloorLine(){
     std::string toString;
     for (int i = 0; i<FLOOR_LINE_SIZE; i++){

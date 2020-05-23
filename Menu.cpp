@@ -156,6 +156,7 @@ void Menu::quit(){
     exit(0);
 }
 
+//Call everytime a round starts
 void Menu::startRound(){
     while(true){
         std::cout << "=== Start Round ===" << std::endl;
