@@ -156,6 +156,7 @@ void Menu::quit(){
     exit(0);
 }
 
+//Call everytime a round starts
 void Menu::startRound(){
     while(true){
         std::cout << "=== Start Round ===" << std::endl;
@@ -173,7 +174,7 @@ void Menu::startRound(){
             std::cout << std::endl;
 
             std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
-            //Call Mosaic Print HERE
+            std::cout << game->getBoardString(i) << std::endl;
 
             bool validTurn = false;
             while (!validTurn){

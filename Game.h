@@ -50,6 +50,8 @@ public:
     void finishRound();
     void checkScore();
 
+    std::string getBoardString(int playerIndex);
+
 private:
     std::vector<char> lid;
     std::vector<char> center;

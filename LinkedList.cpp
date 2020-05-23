@@ -15,6 +15,7 @@ int LinkedList::size(){
     return listSize;
 }
 
+//Clears the linked list
 void LinkedList::clear(){
     Node* curr = head;
     Node* prev;
@@ -32,6 +33,7 @@ void LinkedList::clear(){
     listSize = 0;
 }
 
+//Returns node at index
 Node* LinkedList::getNode(int i){
     Node* current = head;
     while (i != 0){
@@ -41,10 +43,12 @@ Node* LinkedList::getNode(int i){
     return current;
 }
 
+//Returns the data of node at index
 char LinkedList::getData(int i){
     return getNode(i)->data;
 }
 
+//Adds new node to front
 void LinkedList::addFront(char data){
     Node* newNode = new Node(data,head);
 
@@ -58,6 +62,7 @@ void LinkedList::addFront(char data){
     listSize++;
 }
 
+//Adds new node to back
 void LinkedList::addBack(char data){
     Node* newNode = new Node(data, nullptr);
 
