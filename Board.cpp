@@ -8,7 +8,7 @@ Board::Board(){
 
 //overload
 Board::Board(char rightGrid[GRID_SIZE][GRID_SIZE], char leftGrid[GRID_SIZE][GRID_SIZE], char penaltyPanel[PENALTY_LENGTH]){
-    
+
     for(int i=0; i < GRID_SIZE; i++){
         for(int j=0; j < GRID_SIZE; j++){
             this -> wall[i][j] = leftGrid[i][j];
@@ -64,7 +64,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
         int addedTiles = 0;
         int index = 5;
         while (addedTiles != numTiles){
-            index--; 
+            index--;
             if (patternLine[lineChoice][index] == '-'){
                 patternLine[lineChoice][index] = tile;
                 addedTiles ++;
@@ -97,7 +97,7 @@ char Board::patternLineContains(int line){
     return tile;
 }
 
-//Returns a string format of all pattern lines 
+//Returns a string format of all pattern lines
 std::string Board::getPatternLines(){
     std::string toString;
     for (int i = 0; i<5; i++){
@@ -129,6 +129,8 @@ void Board::addFloorLine(char tile){
 
 //Checks PatternLines for full then move to wall
 void Board::checkPatternLines(){
+    numToLid.clear();
+    tileToLid.clear();
     char wallTile;
     for (int line = 0; line<5; line++){
         bool full = true;
@@ -141,6 +143,8 @@ void Board::checkPatternLines(){
             wallTile = patternLineContains(line);
             clearPatternLine(line);
             addToWall(line, wallTile);
+            numToLid.push_back(line+1);
+            tileToLid.push_back(wallTile);
         }
     }
 }
@@ -159,4 +163,12 @@ void Board::addToWall(int line, char tile){
             wall[line][column] = tile;
         }
     }
+}
+
+std::vector<int> Board::getNumToLid(){
+    return numToLid;
+}
+
+std::vector<char> Board::getTileToLid(){
+    return tileToLid;
 }
