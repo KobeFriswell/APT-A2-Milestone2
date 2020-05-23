@@ -27,6 +27,8 @@ public:
     void checkPatternLines();
     void clearPatternLine(int line);
 
+    int tallyScore();
+
     std::string getFloorLine();
 
     char dropTile(char tile);

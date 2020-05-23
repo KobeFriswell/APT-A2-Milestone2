@@ -161,6 +161,13 @@ void Game::setNumberPlayers(){
 
 void Game::finishRound(){
     for (int i = 0; i<numPlayers; i++){
-        boards.at(i)->checkPatternLines();
+        boards.at(i) -> checkPatternLines();
+    }
+}
+
+void Game::checkScore(){
+    for (int i = 0; i<numPlayers; i++){
+        int score = boards.at(i) -> endGameScoreTally();
+        players[i] -> setPlayerScore(score);
     }
 }

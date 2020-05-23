@@ -173,15 +173,20 @@ void Menu::startRound(){
             std::cout << std::endl;
 
             std::cout << "Mosaic For " << game->getPlayer(i)->getUsername() << ":" << std::endl;
-            //Call Mosaic Print Here
+            //Call Mosaic Print HERE
 
             bool validTurn = false;
             while (!validTurn){
                 roundInput(); 
                 validTurn = game->playerTurn(factoryChoice, tile, patternLine);
+
+                //UNCOMMENT THIS
+                //game -> checkScore(); 
             }
         }
         game->finishRound();
+
+        
         std::cout << "=== End Round ===" << std::endl;
     }
 }

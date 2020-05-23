@@ -130,7 +130,7 @@ void Board::addFloorLine(char tile){
 //Checks PatternLines for full then move to wall
 void Board::checkPatternLines(){
     char wallTile;
-    for (int line = 0; line<5; line++){
+    for (int line = 0; line < 5; line++){
         bool full = true;
         for (int tile = 0; tile<5; tile++){
             if (patternLine[line][tile] == '-'){
@@ -152,6 +152,68 @@ void Board::clearPatternLine(int line){
     }
 }
 
+int Board::roundTally(){
+    if(noAdjacentTile()){
+        //Score +1 if the tile placed had no adjacent tiles
+        return
+    }
+
+    else{
+        
+    }
+
+
+}
+
+//calculates how many point the player gets for their board
+int Board::endGameScoreTally(){
+
+    //for each full horizontal line score + 5
+    if(verticalLineFull(i)){
+        //add 
+
+    }
+
+    //for each full vertical line score + 7
+
+    
+
+
+    //for each tile colour, if there exist 5 of them, score + 10
+
+}
+
+int Board::endRoundScoreTally(){
+
+    //if tile placed has no adjacent tile then score +1 and return
+    if(noAdjacentTile()){
+        //Score +1
+        return
+    } else {
+        //add +1 for the tile placed
+
+
+        //for each tile to the left and right until == "-" +1
+
+
+        //for each tile above and below until =="-" +1
+
+
+        //for each tile that droped to the floorline
+        
+
+        //last call because this function ends the game
+        
+        if(horizontalLineFull(i)){
+            //Call the game and tally end game scores
+
+        }
+
+    }
+    
+}
+
+
 //Adds character to wall in its correct position
 void Board::addToWall(int line, char tile){
     for (int column = 0; column<5; column++){
@@ -159,4 +221,9 @@ void Board::addToWall(int line, char tile){
             wall[line][column] = tile;
         }
     }
+}
+
+bool Board::verticalLineFull(int x){
+
+
 }

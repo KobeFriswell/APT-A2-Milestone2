@@ -46,7 +46,9 @@ public:
     void setGameStatus(bool status);
     void setCurrentPlayer(int current);
     void setNumberPlayers();
+
     void finishRound();
+    void checkScore();
 
 private:
     std::vector<char> lid;

@@ -40,7 +40,8 @@ class ReadWrite{
         void saveToFile(string fileName, int gameStatus, 
                 Bag bag, vector<char> boxLid, vector<char> center, vector<Factories*> factories, int currentPlayer, int numPlayers, 
                 Player player1, string p1RightGrid, string p1LeftGrid, string p1PenaltyPanel,
-                Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel);
+                Player player2, string p2RightGrid, string p2LeftGrid, string p2PenaltyPanel
+                );
     private:
 
 
