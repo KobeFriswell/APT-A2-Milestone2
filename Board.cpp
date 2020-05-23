@@ -78,7 +78,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
 int Board::getFreePatterLine(int line){
     int count = 0;
     for (int i = 0; i<5; i++){
-        if (patternLine[line][i] == '.'){
+        if (patternLine[line][i] == '-'){
             count++;
         }
     }
@@ -189,6 +189,78 @@ int Board::endGameScoreTally(){
 int Board::roundTally(){
     int roundScore = 0;
 
+<<<<<<< HEAD
+=======
+        bool horizontal = true;     //check if horizontal
+        bool vertical = true;
+        bool horizontalplus = false;
+        bool verticalplus = false;
+    
+   
+    for(int x = 0; x < GRID_SIZE; x++)
+    {
+        for(int y = 0; y < GRID_SIZE; y++) //looks right
+        {
+            if(y != 5) {
+            roundScore++;
+                
+                if(tempLineX == y + 1)
+                {
+                    horizontalplus = true;
+                    roundScore++;
+                }
+            }
+            else
+            {       
+                    y = 5;
+                horizontal = false;
+            }
+        }
+
+         for(int y = 0; y < GRID_SIZE; y--) //looks left 
+        {
+            if(y != 5) {
+            roundScore++;
+                
+                if(tempLineX == false)
+                {
+                    horizontalplus = true;
+                    roundScore++;
+                }
+            }
+            else
+            {       
+                    y = 0;
+                horizontal = false;
+            }
+        }
+    }
+     if(verticalplus == false && horizontalplus == false)
+        {
+            verticalplus = true;
+            roundScore++;
+        }
+        
+        
+        if(vertical == true)        //if vertical line is full
+        {
+            roundScore += 7;
+        }
+        if(horizontal == true)      //if horizontal line is full
+        {
+            roundScore +=2;
+        }
+
+        //if tiles are on penalty line deduct roundscore
+     for (int x = 0; x < FLOOR_LINE_SIZE; x++)
+    {
+       if(floorLine[x] != '-')
+       {
+         roundScore -= weightings[x];
+       }
+       
+    }
+>>>>>>> origin/comments
     //if tile placed has no adjacent tile then score +1 and return
     // if(noAdjacentTile(x, y)){
     //     //Score +1
@@ -213,6 +285,9 @@ int Board::roundTally(){
         //     //Call the game and tally end game scores
 
         // }
+
+        std::cout << roundScore << std::endl;
+
     return roundScore;
 
     }
