@@ -8,7 +8,7 @@ Board::Board(){
 
 //overload
 Board::Board(char rightGrid[GRID_SIZE][GRID_SIZE], char leftGrid[GRID_SIZE][GRID_SIZE], char penaltyPanel[PENALTY_LENGTH]){
-    
+
     for(int i=0; i < GRID_SIZE; i++){
         for(int j=0; j < GRID_SIZE; j++){
             this -> wall[i][j] = leftGrid[i][j];
@@ -64,7 +64,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
         int addedTiles = 0;
         int index = 5;
         while (addedTiles != numTiles){
-            index--; 
+            index--;
             if (patternLine[lineChoice][index] == '-'){
                 patternLine[lineChoice][index] = tile;
                 addedTiles ++;
@@ -78,7 +78,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
 int Board::getFreePatterLine(int line){
     int count = 0;
     for (int i = 0; i<5; i++){
-        if (patternLine[line][i] == '-'){
+        if (patternLine[line][i] == '.'){
             count++;
         }
     }
@@ -97,7 +97,7 @@ char Board::patternLineContains(int line){
     return tile;
 }
 
-//Returns a string format of all pattern lines 
+//Returns a string format of all pattern lines
 std::string Board::getPatternLines(){
     std::string toString;
     for (int i = 0; i<5; i++){
@@ -129,6 +129,8 @@ void Board::addFloorLine(char tile){
 
 //Checks PatternLines for full then move to wall
 void Board::checkPatternLines(){
+    numToLid.clear();
+    tileToLid.clear();
     char wallTile;
     for (int line = 0; line<5; line++){
         bool full = true;
@@ -141,14 +143,18 @@ void Board::checkPatternLines(){
             wallTile = patternLineContains(line);
             clearPatternLine(line);
             addToWall(line, wallTile);
+            numToLid.push_back(line+1);
+            tileToLid.push_back(wallTile);
         }
     }
 }
 
 //Writes '-' for whole line
 void Board::clearPatternLine(int line){
-    for (int index = 5; index>(5-line); index--){
-        patternLine[line][index] = '-';
+    for (int index = 0; index<5; index++){
+        if (patternLine[line][index] != '.'){
+            patternLine[line][index] = '-';
+        }
     }
 }
 
@@ -159,4 +165,47 @@ void Board::addToWall(int line, char tile){
             wall[line][column] = tile;
         }
     }
+}
+
+//Get number of tiles needed to add to lid
+std::vector<int> Board::getNumToLid(){
+    return numToLid;
+}
+
+//Get tiles needed to add to lid
+std::vector<char> Board::getTileToLid(){
+    return tileToLid;
+}
+
+//Returns printable format of board
+std::string Board::toStringBoard(){
+    std::string toString;
+    for (int row = 0; row<5; row++){
+        toString = toString + std::to_string(row+1) + ": " + stringPatternLine(row) + " || " + getWallLine(row) + "\n";
+    }
+    toString = toString + "Broken: " + getFloorLine();
+    return toString;
+}
+
+//Returns given line in string format
+std::string Board::stringPatternLine(int line){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        if (patternLine[line][i] == '.'){
+            toString = toString + "  ";
+        }
+        else{
+           toString = toString + patternLine[line][i] + " "; 
+        }
+    }
+    return toString;
+}
+
+//Returns given wall line in string format
+std::string Board::getWallLine(int line){
+    std::string toString;
+    for (int i = 0; i<5; i++){
+        toString = toString + wall[line][i] + " "; 
+    }
+    return toString;
 }

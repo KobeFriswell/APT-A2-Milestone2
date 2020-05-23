@@ -7,6 +7,8 @@
 #define GRID_SIZE 5
 #define PENALTY_LENGTH 7
 
+#include <vector>
+
 #define FLOOR_LINE_SIZE 7
 
 class Board {
@@ -18,6 +20,9 @@ public:
     
     void setWallTile(int x, int y, char tile);
     std::string getWall();
+    std::string toStringBoard();
+    std::string stringPatternLine(int line);
+    std::string getWallLine(int line);
     void addToWall(int line, char tile);
 
     bool setPatternTile(int line, char tile, int numTiles);
@@ -32,6 +37,8 @@ public:
     char dropTile(char tile);
     void addFloorLine(char tile);
 
+    std::vector<int> getNumToLid();
+    std::vector<char> getTileToLid();
 private: 
 
     char wall[5][5] = {
@@ -63,6 +70,8 @@ private:
     char floorLine[FLOOR_LINE_SIZE] = {'-'};
     
     //int scoreTrack;
+    std::vector<int> numToLid;
+    std::vector<char> tileToLid;
 };
 
 #endif
