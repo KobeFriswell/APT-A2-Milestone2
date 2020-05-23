@@ -78,7 +78,7 @@ bool Board::setPatternTile(int line, char tile, int numTiles){
 int Board::getFreePatterLine(int line){
     int count = 0;
     for (int i = 0; i<5; i++){
-        if (patternLine[line][i] == '.'){
+        if (patternLine[line][i] == '-'){
             count++;
         }
     }
@@ -127,12 +127,20 @@ void Board::addFloorLine(char tile){
     }
 }
 
+// void Board::clearFloorLine(){
+//     //reset the floorline back to empty
+//     for (int i = 0; i<FLOOR_LINE_SIZE; i++){
+//         //put tile into boxLid
+//         floorLine[i] = "-";
+//     }
+// }
+
 //Checks PatternLines for full then move to wall
 void Board::checkPatternLines(){
     numToLid.clear();
     tileToLid.clear();
     char wallTile;
-    for (int line = 0; line<5; line++){
+    for (int line = 0; line < 5; line++){
         bool full = true;
         for (int tile = 0; tile<5; tile++){
             if (patternLine[line][tile] == '-'){
@@ -151,12 +159,138 @@ void Board::checkPatternLines(){
 
 //Writes '-' for whole line
 void Board::clearPatternLine(int line){
-    for (int index = 0; index<5; index++){
+    for (int index = 0; index < GRID_SIZE; index++){
         if (patternLine[line][index] != '.'){
             patternLine[line][index] = '-';
         }
     }
 }
+
+
+//calculates how many point the player gets for their board
+int Board::endGameScoreTally(){
+
+    //for each full horizontal line score + 5
+    for(int i =0; i < GRID_SIZE; i++)
+        if(verticalLineFull(i)){
+            //add + 5
+
+    }
+
+    //for each full vertical line score + 7
+
+    
+
+
+    //for each tile colour, if there exist 5 of them, score + 10
+
+}
+
+int Board::roundTally(){
+    int roundScore = 0;
+
+        bool horizontal = true;     //check if horizontal
+        bool vertical = true;
+        bool horizontalplus = false;
+        bool verticalplus = false;
+    
+   
+    for(int x = 0; x < GRID_SIZE; x++)
+    {
+        for(int y = 0; y < GRID_SIZE; y++) //looks right
+        {
+            if(y != 5) {
+            roundScore++;
+                
+                if(tempLineX == y + 1)
+                {
+                    horizontalplus = true;
+                    roundScore++;
+                }
+            }
+            else
+            {       
+                    y = 5;
+                horizontal = false;
+            }
+        }
+
+         for(int y = 0; y < GRID_SIZE; y--) //looks left 
+        {
+            if(y != 5) {
+            roundScore++;
+                
+                if(tempLineX == false)
+                {
+                    horizontalplus = true;
+                    roundScore++;
+                }
+            }
+            else
+            {       
+                    y = 0;
+                horizontal = false;
+            }
+        }
+    }
+     if(verticalplus == false && horizontalplus == false)
+        {
+            verticalplus = true;
+            roundScore++;
+        }
+        
+        
+        if(vertical == true)        //if vertical line is full
+        {
+            roundScore += 7;
+        }
+        if(horizontal == true)      //if horizontal line is full
+        {
+            roundScore +=2;
+        }
+
+        //if tiles are on penalty line deduct roundscore
+     for (int x = 0; x < FLOOR_LINE_SIZE; x++)
+    {
+       if(floorLine[x] != '-')
+       {
+         roundScore -= weightings[x];
+       }
+       
+    }
+    //if tile placed has no adjacent tile then score +1 and return
+    // if(noAdjacentTile(x, y)){
+    //     //Score +1
+    //     return
+    // } else {
+        //add +1 for the tile placed
+
+
+        //for each tile to the left and right until == "-" +1
+
+
+        //for each tile above and below until =="-" +1
+
+
+        //for each tile that droped to the floorline
+        
+
+        //last call because this function ends the game
+        
+        // if(horizontalLineFull(i)){
+        //     return roundScore;
+        //     //Call the game and tally end game scores
+
+        // }
+
+        std::cout << roundScore << std::endl;
+
+    return roundScore;
+
+    }
+    
+
+
 
 //Adds character to wall in its correct position
 void Board::addToWall(int line, char tile){
@@ -166,6 +300,19 @@ void Board::addToWall(int line, char tile){
         }
     }
 }
+
+bool Board::verticalLineFull(int y){
+    return true;
+}
+
+bool Board::horizontalLineFull(int x){
+    return false;
+}
+
+bool Board::noAdjacentTile(int x, int y){
+    return true;
+}
+
 
 //Get number of tiles needed to add to lid
 std::vector<int> Board::getNumToLid(){
