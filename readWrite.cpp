@@ -460,8 +460,10 @@ char ReadWrite::loadPlayerRightGrid(int playerId, int x, int y){
     if (playerId == 1){
         return p1RightGrid[x][y];
     }
-    if(playerId ==2){
+    if(playerId == 2){
         return p2RightGrid[x][y];
+    } else {
+        return '0';
     }
 }
 
@@ -472,6 +474,8 @@ char ReadWrite::loadPlayerLeftGrid(int playerId, int x, int y){
     }
     if(playerId ==2){
         return p2LeftGrid[x][y];
+    } else {
+        return '0';
     }
 }
 
@@ -483,6 +487,8 @@ char ReadWrite::loadPlayerPenaltyPanel(int playerId, int i){
     }
     if (playerId ==2){
         return p2PenaltyPanel[i];
+    } else {
+        return '0';
     }
 
 }

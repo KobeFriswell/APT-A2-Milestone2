@@ -71,8 +71,8 @@ void Menu::roundInput(){
         
 //Print welcome when menu object is created
 void Menu::welcome(){
-    std::cout << "Welcome to Azul!" << std::endl;
-    std::cout << "-------------------" << std::endl;
+    std::cout << BOLDGREEN << "Welcome to Azul!" << std::endl;
+    std::cout << "-------------------" << RESET << std::endl;
     std::cout << std::endl;
 }
 
@@ -85,7 +85,7 @@ void Menu::mainMenu(){
         std::cout << "1. New Game" << std::endl;
         std::cout << "2. Load Game" << std::endl;
         std::cout << "3. Credits (Show student information)" << std::endl;
-        std::cout << "4. Quit" << std::endl;
+        std::cout << RED << "4. Quit" << RESET << std::endl;
         std::cout << std::endl;
         
         int getInput = input();
@@ -143,8 +143,8 @@ void Menu::newGame(){
 
     game = new Game(player1, player2);
 
-    std::cout << "Welcome " + player1 + " and " + player2 << std::endl;
-    std::cout << "Let's Play!" << std::endl;
+    std::cout << GREEN << "Welcome " + player1 + " and " + player2 << std::endl;
+    std::cout << "Let's Play!\n" << RESET << std::endl;
     game->setGameStatus(true);
     
     startRound();
@@ -194,23 +194,23 @@ void Menu::loadGame(){
 
 //Function to quit game
 void Menu::quit(){
-    std::cout << "Quit!" << std::endl;
+    std::cout << RED << "Quit!" << RESET <<std::endl;
     exit(0);
 }
 
 //Call everytime a round starts
 void Menu::startRound(){
     while(true){
-        std::cout << "=== Start Round ===" << std::endl;
+        std::cout << BOLDWHITE << "=== Start Round ===" << RESET << std::endl;
         for (int i = 0; i<game->getNumPlayers(); i++){
             game->setCurrentPlayer(i+1);
-            std::cout << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << std::endl;
+            std::cout << BLUE << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << RESET << std::endl;
             std::cout << "Factories: " << std::endl;
-            std::cout << "0: " << game->centerToString() << std::endl;
+            std::cout << BOLDMAGENTA << "0: " << RESET << game->centerToString() << std::endl;
             //Prints factories with randomized tiles
             for (int x = 0; x<NUM_FACTORIES; x++){
                 Factories* factory = game->getFactory(x);
-                std::cout << x+1 << ": ";
+                std::cout << BOLDMAGENTA << x+1 << ": " << RESET;
                 std::cout << factory->toString() << std::endl;
             }
             

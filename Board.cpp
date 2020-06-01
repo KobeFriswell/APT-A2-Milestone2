@@ -169,9 +169,8 @@ void Board::clearPatternLine(int line){
 
 //calculates how many point the player gets for their board
 int Board::endGameScoreTally(){
-
     //for each full horizontal line score + 5
-    for(int i =0; i < GRID_SIZE; i++)
+    for(int i = 0; i < GRID_SIZE; i++)
         if(verticalLineFull(i)){
             //add + 5
 
@@ -183,7 +182,7 @@ int Board::endGameScoreTally(){
 
 
     //for each tile colour, if there exist 5 of them, score + 10
-
+    return 0;
 }
 
 int Board::roundTally(){
@@ -328,9 +327,9 @@ std::vector<char> Board::getTileToLid(){
 std::string Board::toStringBoard(){
     std::string toString;
     for (int row = 0; row<5; row++){
-        toString = toString + std::to_string(row+1) + ": " + stringPatternLine(row) + " || " + getWallLine(row) + "\n";
+        toString = toString + BOLDMAGENTA + std::to_string(row+1) + ": " + RESET + stringPatternLine(row) + "\u2630  " + getWallLine(row) + "\n";
     }
-    toString = toString + "Broken: " + getFloorLine();
+    toString = toString + RED + "Broken: " + RESET + getFloorLine();
     return toString;
 }
 

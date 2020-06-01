@@ -11,6 +11,10 @@
 #define GRID_SIZE 5
 #define PENALTY_LENGTH 7
 
+#define RESET   "\033[0m"
+#define BOLDMAGENTA "\033[1m\033[35m" 
+#define RED     "\033[31m"
+
 #include <vector>
 
 #define FLOOR_LINE_SIZE 7
