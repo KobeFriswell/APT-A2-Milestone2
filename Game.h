@@ -15,7 +15,7 @@
 
 class Game{
 public:
-    Game(std::string player1, std::string player2);
+    Game(std::vector<std::string> playersInput);
 
     Game(bool gameStatus, int currentPlayer,
             std::string player1, int player1Id, int player1Score,
@@ -41,6 +41,7 @@ public:
     Player* getPlayer(int index);
 
     Factories* getFactory(int index);
+    int getNumFactories();
 
     void saveGame(std::string fileName);
 
@@ -64,7 +65,7 @@ private:
     std::vector<Player*> players;
     std::vector<Board*> boards;
 
-
+    int numFactories;
 
     int numPlayers;
 

@@ -327,7 +327,7 @@ std::vector<char> Board::getTileToLid(){
 std::string Board::toStringBoard(){
     std::string toString;
     for (int row = 0; row<5; row++){
-        toString = toString + BOLDMAGENTA + std::to_string(row+1) + ": " + RESET + stringPatternLine(row) + "\u2630  " + getWallLine(row) + "\n";
+        toString = toString + BOLDMAGENTA + std::to_string(row+1) + ": " + RESET + stringPatternLine(row) + " || " + getWallLine(row) + "\n";
     }
     toString = toString + RED + "Broken: " + RESET + getFloorLine();
     return toString;

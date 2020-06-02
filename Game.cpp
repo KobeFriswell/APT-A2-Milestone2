@@ -1,23 +1,19 @@
 #include "Game.h"
 
-Game::Game(std::string player1, std::string player2){
+Game::Game(std::vector<std::string> playersInput){
     //Create Player and Board Objects
-    Player* p1 = new Player(player1);
-    Board* player1Board = new Board();
+    numPlayers = playersInput.size();
+    numFactories = (numPlayers*2)+2;
+    std::cout << numPlayers << std::endl;
+    for (int i = 0; i < numPlayers; i++){
+        Player* player = new Player(playersInput.at(i));
+        Board* playerBoard = new Board();
+        players.push_back(player);
+        boards.push_back(playerBoard);
+    }
 
-    Player* p2 = new Player(player2);
-    Board* player2Board = new Board();
-
-    //Add players and boards to vectors
-    players.push_back(p1);
-    boards.push_back(player1Board);
-
-    players.push_back(p2);
-    boards.push_back(player2Board);
-    numPlayers = 2;
-
-    //Create 5 Factories
-    for (int i = 0; i<NUM_FACTORIES; i++){
+    //Create Factories
+    for (int i = 0; i<numFactories; i++){
         Factories* factory = new Factories();
         factories.push_back(factory);
     }
@@ -26,7 +22,7 @@ Game::Game(std::string player1, std::string player2){
     tileBag.shuffleBag();
 
     //Add tiles to factories
-    for(int x = 0; x < NUM_FACTORIES; x++){
+    for(int x = 0; x < numFactories; x++){
         for (int y = 0; y<4; y++){
             char tile = tileBag.grabTile();
             factories.at(x)->storeTile(tile);
@@ -224,4 +220,8 @@ void Game::checkScore(){
 
 std::string Game::getBoardString(int playerIndex){
     return boards.at(playerIndex)->toStringBoard();
+}
+
+int Game::getNumFactories(){
+    return numFactories;
 }

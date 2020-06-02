@@ -24,10 +24,10 @@ void Menu::roundInput(){
         action = "";
         fileName = "";
 
-        std::cout << "\nturn or save: \n> ";
+        std::cout << "\nturn, save or help: \n> ";
         std::cin >> action;
         
-        if (action != "turn" && action != "save"){
+        if (action != "turn" && action != "save" && action != "help"){
             std::cout << "\nInvalid Action (turn or save)" << std::endl;
             std::cin.clear();
             std::cin.ignore(1000, '\n');
@@ -42,7 +42,7 @@ void Menu::roundInput(){
                 std::cout << "\nEnter Turn (Factory Tile PatternLine): \n>";
                 std::cin >> factoryChoice >> tile >> patternLine;
                 tile = toupper(tile);
-                if (factoryChoice < 0 || factoryChoice >5){
+                if (factoryChoice < 0 || factoryChoice >game->getNumFactories()){
                     std::cout << "\nInvalid Factory" << std::endl;
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
@@ -65,13 +65,15 @@ void Menu::roundInput(){
             std::cin >> fileName;
             game->saveGame(fileName);
             valid = true;
+        } else if (action == "help"){
+            //TODO
         }
     }
 }
         
 //Print welcome when menu object is created
 void Menu::welcome(){
-    std::cout << BOLDGREEN << "Welcome to Azul!" << std::endl;
+    std::cout << GREEN << "Welcome to Azul!" << std::endl;
     std::cout << "-------------------" << RESET << std::endl;
     std::cout << std::endl;
 }
@@ -131,19 +133,38 @@ void Menu::credits(){
 void Menu::newGame(){
     std::cout << "Starting New Game" << std::endl;
 
-    std::cout << "Enter Player 1 Name: \n>";
-    std::string player1;
-    std::cin >> player1;
+    std::cout << "How many players?(2-4): " << std::endl;
+    int numPlayers = 0;
+    valid = false;
+    while (!valid){
+        numPlayers = input();
+        if (numPlayers < 2 || numPlayers > 4){
+            std::cout << "Please Input Number Between 2 and 4\n" << std::endl;
+        } else {
+            valid = true;
+        }
+    }
+    
+    std::vector<std::string> players;
+    for (int i = 0; i < numPlayers; i++){
+        std::cout << "Enter Player " << i+1 << " Name: \n>";
+        std::string playerName;
+        std::cin >> playerName;
+        std::cout << std::endl;
+        players.push_back(playerName);
+    }
+
+    game = new Game(players);
+
+    std::cout << GREEN << "Welcome ";
+    int playerSize = players.size();
+    for (int i = 0; i<playerSize; i++){
+        std::cout << players.at(i);
+        if (i!=playerSize-1){
+            std::cout << " and ";
+        }
+    }
     std::cout << std::endl;
-
-    std::cout << "Enter Player 2 Name: \n>";
-    std::string player2;
-    std::cin >> player2;
-    std::cout << std::endl;
-
-    game = new Game(player1, player2);
-
-    std::cout << GREEN << "Welcome " + player1 + " and " + player2 << std::endl;
     std::cout << "Let's Play!\n" << RESET << std::endl;
     game->setGameStatus(true);
     
@@ -208,7 +229,7 @@ void Menu::startRound(){
             std::cout << "Factories: " << std::endl;
             std::cout << BOLDMAGENTA << "0: " << RESET << game->centerToString() << std::endl;
             //Prints factories with randomized tiles
-            for (int x = 0; x<NUM_FACTORIES; x++){
+            for (int x = 0; x<game->getNumFactories(); x++){
                 Factories* factory = game->getFactory(x);
                 std::cout << BOLDMAGENTA << x+1 << ": " << RESET;
                 std::cout << factory->toString() << std::endl;
