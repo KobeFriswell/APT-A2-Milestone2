@@ -1,10 +1,11 @@
 #include "Game.h"
 
-Game::Game(std::vector<std::string> playersInput){
-    //Create Player and Board Objects
+Game::Game(std::vector<std::string> playersInput, int centers){
     numPlayers = playersInput.size();
-    numFactories = (numPlayers*2)+2;
-    std::cout << numPlayers << std::endl;
+    numCenters = centers;
+    numFactories = (numPlayers*2)+1;
+
+    //Create Player and Board Objects
     for (int i = 0; i < numPlayers; i++){
         Player* player = new Player(playersInput.at(i));
         Board* playerBoard = new Board();
@@ -13,6 +14,7 @@ Game::Game(std::vector<std::string> playersInput){
     }
 
     //Create Factories
+    std::cout << numFactories << std::endl;
     for (int i = 0; i<numFactories; i++){
         Factories* factory = new Factories();
         factories.push_back(factory);
@@ -77,8 +79,12 @@ void Game::addToLid(char tile){
 }
 
 //Adds pointer to tile to back of center vector 
-void Game::addToCenter(char tile){
-    center.push_back(tile);
+void Game::addToCenter(char tile, bool choiceExtra){
+    if (choiceExtra){
+        extraCenter.push_back(tile);
+    } else{
+        center.push_back(tile);
+    }
 }
 
 //Adds pointer to tile to the back of tilebag linked list
@@ -112,27 +118,44 @@ std::string Game::lidToString(){
 }
 
 //Returns a string format of the center
-std::string Game::centerToString(){
-    int centerSize = center.size();
+std::string Game::centerToString(bool extra){
+    std::vector<char>* chosenCenter;
+    if (extra){
+        chosenCenter = &extraCenter;
+    } else{
+        chosenCenter = &center;
+    }
+    int centerSize = chosenCenter->size();
     std::string toString;
     for (int i = 0; i<centerSize; i++){
-        toString = toString + center.at(i) + " ";
+        toString = toString + chosenCenter->at(i) + " ";
     }
     return toString;
 }
 
+//Return a the number of centers for this game
+int Game::getNumCenters(){
+    return numCenters;
+}
+
 //Takes player turn from menu input and returns if valid
-bool Game::playerTurn(int factoryChoice, char tile, int patternLine){
+bool Game::playerTurn(int factoryChoice, char tile, int patternLine, int centerChoice){
     int numTiles = 0;
     if (factoryChoice == 0){
-        return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, takeCenterTile(tile));
+        return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, takeCenterTile(tile, false));
+    } if (factoryChoice == 1 && numCenters == 2){
+        return boards.at(currentPlayer-1)->setPatternTile(patternLine, tile, takeCenterTile(tile, true));
     } else{
         Factories* factory = factories.at(factoryChoice-1);
         numTiles = factory->takeTile(tile);
         std::string remainingTiles = factory->toString();
         for (int i = 0; i<8; i++){
             if (remainingTiles[i] != '\0' && remainingTiles[i] != '-' && remainingTiles[i] != ' ' && remainingTiles[i] != '0'){
-                addToCenter(remainingTiles[i]);
+                if (centerChoice==1){
+                    addToCenter(remainingTiles[i], false);
+                } else{
+                    addToCenter(remainingTiles[i], true);
+                }
             }
         }
     }   
@@ -142,18 +165,26 @@ bool Game::playerTurn(int factoryChoice, char tile, int patternLine){
 }
 
 //Take tile from the center
-int Game::takeCenterTile(char tile){
+int Game::takeCenterTile(char tile, bool extra){
+    std::vector<char>* chosenCenter;
     int numTiles = 0;
     bool deleting = true;
     int index = 0;
+
+    if (!extra){
+        chosenCenter = &center;
+    } else {
+        chosenCenter = &extraCenter;
+    }
+
     while (deleting){
-        if(center.at(index) == tile){
+        if(chosenCenter->at(index) == tile){
             numTiles++;
-            center.erase(center.begin() + index);
+            chosenCenter->erase(chosenCenter->begin() + index);
         } else{
             index++;
         }
-        int centerSize = center.size();
+        int centerSize = chosenCenter->size();
         if (index == centerSize){
             deleting = false;
         }

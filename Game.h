@@ -15,7 +15,7 @@
 
 class Game{
 public:
-    Game(std::vector<std::string> playersInput);
+    Game(std::vector<std::string> playersInput, int centers);
 
     Game(bool gameStatus, int currentPlayer,
             std::string player1, int player1Id, int player1Score,
@@ -28,11 +28,12 @@ public:
     void addToLid(char tile);
     std::string lidToString();
 
-    void addToCenter(char tile);
-    std::string centerToString();
-    int takeCenterTile(char tile);
+    void addToCenter(char tile, bool choiceExtra);
+    std::string centerToString(bool extra);
+    int takeCenterTile(char tile, bool extra);
+    int getNumCenters();
 
-    bool playerTurn(int factoryChoice, char tile, int patternLine);
+    bool playerTurn(int factoryChoice, char tile, int patternLine, int centerChoice);
     //void finishRound();
 
     void addToTileBag(char tile);
@@ -58,6 +59,7 @@ private:
 
     std::vector<char> lid;
     std::vector<char> center;
+    std::vector<char> extraCenter;
     std::vector<Factories*> factories;
     Bag tileBag;
     
@@ -66,6 +68,7 @@ private:
     std::vector<Board*> boards;
 
     int numFactories;
+    int numCenters;
 
     int numPlayers;
 

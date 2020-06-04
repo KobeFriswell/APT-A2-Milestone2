@@ -43,21 +43,38 @@ void Menu::roundInput(){
                 std::cin >> factoryChoice >> tile >> patternLine;
                 tile = toupper(tile);
                 if (factoryChoice < 0 || factoryChoice >game->getNumFactories()){
-                    std::cout << "\nInvalid Factory" << std::endl;
+                    std::cout << BOLDRED << "\nInvalid Factory" << std::endl;
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
                 } else if (tiles.find(tile) == std::string::npos){
-                    std::cout << "\nInvalid Tile" << std::endl;
+                    std::cout << BOLDRED << "\nInvalid Tile" << std::endl;
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
                 } else if (patternLine < 1 || patternLine > 5){
-                    std::cout << "\nInvalid Pattern Line" << std::endl;
+                    std::cout << BOLDRED << "\nInvalid Pattern Line" << std::endl;
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
                 } else {
                     //Passed Validation - use factorieChoice, tile and patternLine
                     turn = true;
                     valid = true;
+                    //Option for excess tiles when extra center is in play
+                    extraCenter = 0;
+                    if (game->getNumCenters()==2){
+                        bool centerValid = false;
+                        while(!centerValid){
+                            extraCenter = 0;
+                            std::cout << "Enter which center you would like the excess tiles to go (1 or 2): " << std::endl;
+                            std::cin >> extraCenter;
+                            if (extraCenter < 1 || extraCenter > 2){
+                                std::cout << BOLDRED << "\nInvalid Center Choice" << RESET << std::endl;
+                                std::cin.clear();
+                                std::cin.ignore(1000, '\n');
+                            } else{ 
+                                centerValid = true;
+                            }
+                        }
+                    }
                 } 
             } 
         } else if (action == "save"){
@@ -135,16 +152,30 @@ void Menu::newGame(){
 
     std::cout << "How many players?(2-4): " << std::endl;
     int numPlayers = 0;
-    valid = false;
-    while (!valid){
+    bool inValidPlayers = true;
+    while (inValidPlayers){
         numPlayers = input();
         if (numPlayers < 2 || numPlayers > 4){
-            std::cout << "Please Input Number Between 2 and 4\n" << std::endl;
+            std::cout << "Please Input Number Between 2 and 4" << std::endl;
+            std::cin.ignore(1000, '\n');
         } else {
-            valid = true;
+            inValidPlayers = false;
         }
     }
-    
+
+    std::cout << "1 or 2 Centre Factories?: " << std::endl;
+    int centres = 0;
+    bool inValidFactories = true;
+    while (inValidFactories){
+        centres = input();
+        if (centres < 1 || centres > 2){
+            std::cout << "Please Input Number Between 1 and 2" << std::endl;
+            std::cin.ignore(1000, '\n');
+        } else {
+            inValidFactories = false;
+        }
+    }
+
     std::vector<std::string> players;
     for (int i = 0; i < numPlayers; i++){
         std::cout << "Enter Player " << i+1 << " Name: \n>";
@@ -154,7 +185,7 @@ void Menu::newGame(){
         players.push_back(playerName);
     }
 
-    game = new Game(players);
+    game = new Game(players, centres);
 
     std::cout << GREEN << "Welcome ";
     int playerSize = players.size();
@@ -227,11 +258,16 @@ void Menu::startRound(){
             game->setCurrentPlayer(i+1);
             std::cout << BLUE << "\nTURN FOR PLAYER: " + game->getPlayer(i)->getUsername() << RESET << std::endl;
             std::cout << "Factories: " << std::endl;
-            std::cout << BOLDMAGENTA << "0: " << RESET << game->centerToString() << std::endl;
+            std::cout << BOLDYELLOW << "0: " << RESET << game->centerToString(false) << std::endl;
+            int index = 0;
+            if (game->getNumCenters()==2){
+                index=1;
+                std::cout << BOLDYELLOW << "1: " << RESET << game->centerToString(true) << std::endl;
+            }
             //Prints factories with randomized tiles
-            for (int x = 0; x<game->getNumFactories(); x++){
-                Factories* factory = game->getFactory(x);
-                std::cout << BOLDMAGENTA << x+1 << ": " << RESET;
+            for (int i = 0; i<game->getNumFactories(); i++){
+                Factories* factory = game->getFactory(i);
+                std::cout << BOLDMAGENTA << i+1+index << ": " << RESET;
                 std::cout << factory->toString() << std::endl;
             }
             
@@ -244,7 +280,7 @@ void Menu::startRound(){
             bool validTurn = false;
             while (!validTurn){
                 roundInput(); 
-                validTurn = game->playerTurn(factoryChoice, tile, patternLine);
+                validTurn = game->playerTurn(factoryChoice, tile, patternLine, extraCenter);
 
                 //UNCOMMENT THIS
                 //game -> checkScore(); 

@@ -52,7 +52,8 @@ private:
     int factoryChoice;
     char tile;
     int patternLine;
-    
+    int extraCenter;
+
     bool gameStatus;
     int currentPlayer;
     int numberPlayers;
