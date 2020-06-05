@@ -192,53 +192,39 @@ int Board::roundTally(){
         bool vertical = true;
         bool horizontalplus = false;
         bool verticalplus = false;
-    
-   
-    for(int x = 0; x < GRID_SIZE; x++)
-    {
-        for(int y = 0; y < GRID_SIZE; y++) //looks right
-        {
+    for(int x = 0; x < GRID_SIZE; x++){
+        //looks right
+        for(int y = 0; y < GRID_SIZE; y++){
             if(y != 5) {
-            roundScore++;
-                
+                roundScore++;  
                 if(tempLineX == y + 1)
                 {
                     horizontalplus = true;
                     roundScore++;
                 }
-            }
-            else
-            {       
-                    y = 5;
+            } else {       
+                y = 5;
                 horizontal = false;
             }
         }
-
-         for(int y = 0; y < GRID_SIZE; y--) //looks left 
-        {
+        //looks left
+        for(int y = 0; y < GRID_SIZE; y--) {
             if(y != 5) {
-            roundScore++;
-                
-                if(tempLineX == false)
-                {
+                roundScore++;
+                if(tempLineX == false) {
                     horizontalplus = true;
                     roundScore++;
                 }
-            }
-            else
-            {       
-                    y = 0;
+            } else {       
+                y = 0;
                 horizontal = false;
             }
         }
     }
-     if(verticalplus == false && horizontalplus == false)
-        {
-            verticalplus = true;
-            roundScore++;
-        }
-        
-        
+    if(verticalplus == false && horizontalplus == false) {
+        verticalplus = true;
+        roundScore++;
+    }
         if(vertical == true)        //if vertical line is full
         {
             roundScore += 7;
