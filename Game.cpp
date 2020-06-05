@@ -14,7 +14,6 @@ Game::Game(std::vector<std::string> playersInput, int centers){
     }
 
     //Create Factories
-    std::cout << numFactories << std::endl;
     for (int i = 0; i<numFactories; i++){
         Factories* factory = new Factories();
         factories.push_back(factory);

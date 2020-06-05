@@ -293,9 +293,9 @@ void Menu::startRound(){
 
 //Prints help menu
 void Menu::help(){
-    std::cout << "\n=== Help ===" << std::endl;
+    std::cout << BOLDGREEN << "\n=== Help ===" << RESET << std::endl;
     std::cout << "Turn: " << std::endl;
-    std::cout << "  After selecting turn, enter the factory in which you want to choose the tile from,\n    followed by the tile character and the pattern line the tile will be placed to on the players board" << std::endl;
+    std::cout << "  After selecting turn, enter the factory in which you want to choose the tile from,\n    followed by the tile character and the pattern line the tile will be placed to on the players board\n   Note: Yellow factorie(s) are the center" << std::endl;
     std::cout << "Save: " << std::endl;
     std::cout << "  After selecting save, choose a filename for the save file" << std::endl;
 }
