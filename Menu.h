@@ -28,6 +28,7 @@ public:
     void roundInput();
     void welcome();
     void mainMenu();
+    void help();
 
     void newGame();
     void loadGame();
